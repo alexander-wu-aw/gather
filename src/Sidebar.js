@@ -39,7 +39,7 @@ class Sidebar extends Component{
             <button class="sidebar-link" onClick={this.projectHandleClick}>
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
-                      <FaBars/>
+                      <FaRegObjectGroup/>
                     </div>
                 </IconContext.Provider>                
             </button>
@@ -60,7 +60,7 @@ class Sidebar extends Component{
             <button class="sidebar-link">
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
-                      <FaRegObjectGroup/>
+                        <FaBars/>
                     </div>
                 </IconContext.Provider>  
             </button>
@@ -72,6 +72,6 @@ class Sidebar extends Component{
 </div>
   );
   }
-}
+} 
 
 export default Sidebar;
