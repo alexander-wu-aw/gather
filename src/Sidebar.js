@@ -36,34 +36,34 @@ class Sidebar extends Component{
   <div>
     <div class="sidebar">
         <div class="sidebar-options">
-            <button class="sidebar-link" onClick={this.projectHandleClick}>
+            <div class="sidebar-link" onClick={this.projectHandleClick}>
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                       <FaRegObjectGroup/>
                     </div>
                 </IconContext.Provider>                
-            </button>
-            <button class="sidebar-link" onClick={this.chatHandleClick}>
+            </div>
+            <div class="sidebar-link" onClick={this.chatHandleClick}>
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                       <FaRegComment/>
                     </div>
                 </IconContext.Provider>      
-            </button>
-            <button class="sidebar-link">
+            </div>
+            <div class="sidebar-link">
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                       <FaRegCircle/>
                     </div>
                 </IconContext.Provider>  
-            </button>
-            <button class="sidebar-link">
+            </div>
+            <div class="sidebar-link">
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                         <FaBars/>
                     </div>
                 </IconContext.Provider>  
-            </button>
+            </div>
         </div>
       </div>
     <div class="main">

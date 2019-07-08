@@ -24,6 +24,7 @@ body{
   color: #B5B5B5;
   display: block;
   border: none;
+  cursor: pointer;
 }
 
 .sidebar-options{
