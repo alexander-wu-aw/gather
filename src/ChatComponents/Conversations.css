@@ -1,0 +1,33 @@
+.convo {
+    border-bottom: 1px solid #c4c4c4;
+    margin: 0;
+    padding: 18px 16px 10px 30px;
+    overflow:hidden; 
+    clear:both;
+  }
+  .active-convo{ 
+    background:#ebebeb;
+  }
+  .convo-img {
+    float: left;
+    width: 9%;
+  }
+  .convo-desc {
+    float: left;
+    padding: 0 0 0 15px;
+    width: 88%;
+  }
+  .convo-desc h5{ 
+    font-size:15px; 
+    color:#464646; 
+    margin:0 0 8px 0;
+  }
+  .convo-desc h5 span{ 
+    font-size:13px; 
+    float:right;
+  }
+  .convo-desc p{ 
+    font-size:14px; 
+    color:#989898; 
+    margin:auto
+  }

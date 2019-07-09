@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './ChatPage.css';
+import Convo from './Conversations';
 
 
 class ChatPage extends Component{
@@ -9,7 +10,7 @@ class ChatPage extends Component{
             <div class="chat">
             <div class="inbox">
                 <div class="inbox-heading">
-                    <div class="recent-heading">
+                    <div class="messages-heading">
                         Messages
                     </div>
                     <div class="search">
@@ -23,56 +24,9 @@ class ChatPage extends Component{
                 </div>
 
                 <div class="inbox-convo">
-                    <div class="convo active-convo">
-                        <div class="convo-img"> 
-                            <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                        </div>
-                        <div class="convo-desc">
-                            <h5>Sunil Rajput <span class="convo-date">Dec 25</span></h5>
-                            <p>Test, which is a new approach to have all solutions 
-                            astrology under one roof.</p>
-                        </div>
-                    </div>
-                    <div class="convo">
-                            <div class="convo-img"> 
-                                <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                            </div>
-                            <div class="convo-desc">
-                                <h5>Sunil Rajput <span class="convo-date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                astrology under one roof.</p>
-                            </div>
-                    </div>
-                    <div class="convo">
-                            <div class="convo-img"> 
-                                <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                            </div>
-                            <div class="convo-desc">
-                                <h5>Sunil Rajput <span class="convo-date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                astrology under one roof.</p>
-                            </div>
-                    </div>
-                    <div class="convo">
-                            <div class="convo-img"> 
-                                <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                            </div>
-                            <div class="convo-desc">
-                                <h5>Sunil Rajput <span class="convo-date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                astrology under one roof.</p>
-                            </div>
-                    </div>
-                    <div class="convo">
-                            <div class="convo-img"> 
-                                <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                            </div>
-                            <div class="convo-desc">
-                                <h5>Sunil Rajput <span class="convo-date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions 
-                                astrology under one roof.</p>
-                            </div>
-                    </div>
+                    <Convo/>
+                    <Convo/>
+                    <Convo/>
                 </div>
             </div>
 
