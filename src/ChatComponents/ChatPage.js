@@ -1,100 +1,82 @@
 import React, {Component} from 'react';
 import './ChatPage.css';
 import Convo from './Conversations';
-
+import MessageList from './MessageList';
+import InputMsg from './InputMsg';
+import Chatkit from "../../node_modules/@pusher/chatkit-client";
+import { tokenUrl, instanceLocator } from './APIconfig'
 
 class ChatPage extends Component{
 
+    constructor(){
+        super()
+        this.state = {
+            messages: []
+        }
+        this.sendMessage = this.sendMessage.bind(this)
+
+    }
+        
+    componentDidMount() {
+          const chatManager = new Chatkit.ChatManager({
+              instanceLocator,
+              userId: 'Alexander',
+              tokenProvider: new Chatkit.TokenProvider({
+                  url: tokenUrl
+              })
+          })
+          
+          chatManager.connect()
+          .then(currentUser => {
+            this.currentUser = currentUser
+            this.currentUser.subscribeToRoom({
+                roomId: "19446455",
+                hooks: {
+                    onMessage: message => {
+                        this.setState({
+                            messages: [...this.state.messages, message]
+                        })
+                    }
+                }
+            })
+          })
+    }
+    sendMessage(text) {
+        this.currentUser.sendMessage({
+            text,
+            roomId: "19446455"
+        })
+    }
+
+
     render(){
         return (
-            <div class="chat">
-            <div class="inbox">
-                <div class="inbox-heading">
-                    <div class="messages-heading">
+            <div className="chat">
+            <div className="inbox">
+                <div className="inbox-heading">
+                    <div className="messages-heading">
                         Messages
                     </div>
-                    <div class="search">
-                        <input type="text" class="search-input"  placeholder="Search" />
-                        <span class="search-button">
+                    <div className="search">
+                        <input type="text" className="search-input"  placeholder="Search" />
+                        <span className="search-button">
                             <button type="button"> 
-                                <i class="fa fa-search" aria-hidden="true"></i> 
+                                <i className="fa fa-search" aria-hidden="true"></i> 
                             </button>
                         </span> 
                     </div>
                 </div>
 
-                <div class="inbox-convo">
+                <div className="inbox-convo">
                     <Convo/>
                     <Convo/>
                     <Convo/>
                 </div>
             </div>
 
-            <div class="msg">
-              <div class="msg-history">
-                <div class="msg-in">
-                    <div class="msg-in-img"> 
-                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                    </div>
-                    <div class="msg-in-content">
-                        <div class="msg-in-content-box">
-                          <p>Test which is a new approach to have all solutions</p>
-                          <span class="time_date"> 11:01 AM    |    June 9</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="msg-out">
-                    <div class="msg-out-content">
-                      <p>Hello, Test which is a new approach to have all
-                        solutions</p>
-                      <span class="time_date"> 11:01 AM    |    June 9</span> 
-                    </div>
-                </div>
-                <div class="msg-in">
-                    <div class="msg-in-img"> 
-                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                    </div>
-                    <div class="msg-in-content">
-                        <div class="msg-in-content-box">
-                          <p>Test which is a new approach to have all solutions</p>
-                          <span class="time_date"> 11:01 AM    |    June 9</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="msg-out">
-                    <div class="msg-out-content">
-                      <p>Hello, Test which is a new approach to have all
-                        solutions</p>
-                      <span class="time_date"> 11:01 AM    |    June 9</span> 
-                    </div>
-                </div>
-                <div class="msg-in">
-                    <div class="msg-in-img"> 
-                        <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
-                    </div>
-                    <div class="msg-in-content">
-                        <div class="msg-in-content-box">
-                          <p>Test which is a new approach to have all solutions</p>
-                          <span class="time_date"> 11:01 AM    |    June 9</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="msg-out">
-                    <div class="msg-out-content">
-                      <p>Hello, Test which is a new approach to have all
-                        solutions</p>
-                      <span class="time_date"> 11:01 AM    |    June 9</span> 
-                    </div>
-                </div>
-                
-              </div>
-
-                <div class="msg-new">
-                        <input type="text" class="msg-new-input" placeholder="Type a message" />
-                        <button class="msg-new-send" type="button">
-                          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                        </button>
-                </div>
+            <div className="msg">
+                <MessageList messages={this.state.messages}/>
+                <InputMsg sendMessage={this.sendMessage}/>
 
 
 

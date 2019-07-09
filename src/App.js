@@ -34,30 +34,30 @@ class App extends Component{
     }
   return (
   <div>
-    <div class="sidebar">
-        <div class="sidebar-options">
-            <div class="sidebar-link" onClick={this.projectHandleClick}>
+    <div className="sidebar">
+        <div className="sidebar-options">
+            <div className="sidebar-link" onClick={this.projectHandleClick}>
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                       <FaRegObjectGroup/>
                     </div>
                 </IconContext.Provider>                
             </div>
-            <div class="sidebar-link" onClick={this.chatHandleClick}>
+            <div className="sidebar-link" onClick={this.chatHandleClick}>
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                       <FaRegComment/>
                     </div>
                 </IconContext.Provider>      
             </div>
-            <div class="sidebar-link">
+            <div className="sidebar-link">
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                       <FaRegCircle/>
                     </div>
                 </IconContext.Provider>  
             </div>
-            <div class="sidebar-link">
+            <div className="sidebar-link">
                 <IconContext.Provider value={{ size: "1.5em" }}>
                     <div>
                         <FaBars/>
@@ -66,7 +66,7 @@ class App extends Component{
             </div>
         </div>
       </div>
-    <div class="main">
+    <div className="main">
       {page}
     </div>
 </div>
