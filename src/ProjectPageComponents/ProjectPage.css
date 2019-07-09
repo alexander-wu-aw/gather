@@ -1,3 +1,6 @@
+.projects{
+  padding-left: 70px;
+}
 /* NavBar */
 .navbar {
     top: 50px;
@@ -23,7 +26,7 @@
     margin-right: 50px;
     margin-left: 50px;
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 17px;
   }
   .nav-link:hover{
     color: #000000;
@@ -56,15 +59,15 @@
   }
 
   .profile{
-    font-size: 25px;
-    line-height: 21px;
+    font-size: 20px;
+    line-height: 18px;
   }
   .profile:hover{
       color: black;
       text-decoration: none;
   }
   .profile-pic{
-      height: 85px;
+      height: 70px;
       margin-left: 20px;
       border-radius: 50%;
   }
@@ -78,5 +81,5 @@
   .project-all:after {
     content: '';
     max-height: 1px;
-    width: 980px
+    width: 810px
   }

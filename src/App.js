@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import './Sidebar.css';
-import ProjectPage from './ProjectPage';
-import ChatPage from "./ChatPage";
+import './App.css';
+import ProjectPage from './ProjectPageComponents/ProjectPage';
+import ChatPage from "./ChatComponents/ChatPage";
 
 import { IconContext } from "react-icons";
 import { FaBars, FaRegComment, FaRegCircle, FaRegObjectGroup } from 'react-icons/fa';
 
 
-class Sidebar extends Component{
+class App extends Component{
   state ={
     page: "project"
   }
@@ -74,4 +74,4 @@ class Sidebar extends Component{
   }
 } 
 
-export default Sidebar;
+export default App;

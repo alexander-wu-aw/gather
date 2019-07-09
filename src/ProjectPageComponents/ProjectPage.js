@@ -6,7 +6,7 @@ class ProjectPage extends Component{
 
     render(){
         return (
-        <div>
+        <div class="projects">
             <nav class="navbar navbar-expand-md" >
                 <p class="navbar-brand" >Projects</p>
                 <div class=" navbar-collapse" id="main-navigation">
