@@ -4,6 +4,7 @@
     padding: 18px 16px 10px 30px;
     overflow:hidden; 
     clear:both;
+    cursor: pointer;
   }
   .active-convo{ 
     background:#ebebeb;

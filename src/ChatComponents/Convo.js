@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Conversations.css';
+import './Convo.css';
 
 
 class Convo extends Component{
@@ -11,7 +11,7 @@ class Convo extends Component{
                             <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/> 
                         </div>
                         <div className="convo-desc">
-                            <h5>Sunil Rajput <span className="convo-date">Dec 25</span></h5>
+                            <h5>{this.props.name} <span className="convo-date">Dec 25</span></h5>
                             <p>Test, which is a new approach to have all solutions 
                             astrology under one roof.</p>
                         </div>

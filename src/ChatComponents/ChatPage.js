@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './ChatPage.css';
-import Convo from './Conversations';
+import ConvoList from './ConvoList';
 import MessageList from './MessageList';
 import InputMsg from './InputMsg';
 import Chatkit from "../../node_modules/@pusher/chatkit-client";
@@ -11,78 +11,99 @@ class ChatPage extends Component{
     constructor(){
         super()
         this.state = {
-            messages: []
+            roomId: null,
+            messages: [],
+            joinableRooms: [],
+            joinedRooms: []
         }
         this.sendMessage = this.sendMessage.bind(this)
-
+        this.subscribeToRoom = this.subscribeToRoom.bind(this)
+        this.getRooms = this.getRooms.bind(this)
     }
         
     componentDidMount() {
           const chatManager = new Chatkit.ChatManager({
               instanceLocator,
-              userId: 'Alexander',
+              userId: 'Stranger',
               tokenProvider: new Chatkit.TokenProvider({
                   url: tokenUrl
               })
           })
-          
           chatManager.connect()
           .then(currentUser => {
             this.currentUser = currentUser
-            this.currentUser.subscribeToRoom({
-                roomId: "19446455",
-                hooks: {
-                    onMessage: message => {
-                        this.setState({
-                            messages: [...this.state.messages, message]
-                        })
-                    }
-                }
-            })
-          })
+            this.getRooms()
+        })
+          .catch(err => console.log('error on connecting: ', err))
     }
+
+    getRooms() {
+        this.currentUser.getJoinableRooms()
+        .then(joinableRooms => {
+            this.setState({
+                joinableRooms,
+                joinedRooms: this.currentUser.rooms
+            })
+            /*this.subscribeToRoom([...this.state.joinableRooms, ...this.state.joinedRooms].sort((a, b) => new Date(b.lastMessageAt).getTime() -  new Date(a.lastMessageAt).getTime())[0].id)*/
+        })
+        .catch(err => console.log('error on joinableRooms: ', err))
+    }
+
+    subscribeToRoom(roomId){
+        this.setState({ messages: [] })
+        this.currentUser.subscribeToRoom({
+            roomId: roomId,
+            hooks: {
+                onMessage: message => {
+                    this.setState({
+                        messages: [...this.state.messages, message]
+                    })
+                }
+            }
+        })
+        .then(room => {
+            this.setState({
+                roomId:room.id
+            })
+            this.getRooms()
+        })
+        .catch(err => console.log('error on subscribing to room: ', err))
+    }
+
     sendMessage(text) {
         this.currentUser.sendMessage({
             text,
-            roomId: "19446455"
+            roomId: this.state.roomId
         })
     }
-
 
     render(){
         return (
             <div className="chat">
-            <div className="inbox">
-                <div className="inbox-heading">
-                    <div className="messages-heading">
-                        Messages
+                <div className="inbox">
+                    <div className="inbox-heading">
+                        <div className="messages-heading">
+                            Messages
+                        </div>
+                        <div className="search">
+                            <input type="text" className="search-input"  placeholder="Search" />
+                            <span className="search-button">
+                                <button type="button"> 
+                                    <i className="fa fa-search" aria-hidden="true"></i> 
+                                </button>
+                            </span> 
+                        </div>
                     </div>
-                    <div className="search">
-                        <input type="text" className="search-input"  placeholder="Search" />
-                        <span className="search-button">
-                            <button type="button"> 
-                                <i className="fa fa-search" aria-hidden="true"></i> 
-                            </button>
-                        </span> 
-                    </div>
+                    <ConvoList 
+                    roomId={this.state.roomId}
+                    subscribeToRoom={this.subscribeToRoom} 
+                    rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
                 </div>
 
-                <div className="inbox-convo">
-                    <Convo/>
-                    <Convo/>
-                    <Convo/>
+                <div className="msg">
+                    <MessageList messages={this.state.messages}/>
+                    <InputMsg sendMessage={this.sendMessage}/>
                 </div>
-            </div>
-
-            <div className="msg">
-                <MessageList messages={this.state.messages}/>
-                <InputMsg sendMessage={this.sendMessage}/>
-
-
-
-            </div>
-
-            
         </div>
         );
         }

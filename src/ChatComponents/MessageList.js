@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom'
 import './ChatPage.css';
 import ReceivedMsg from './ReceivedMsg';
 import SentMsg from './SentMsg';
 
 
 class MessageList extends Component{
+
+  componentWillUpdate(){
+    const node = ReactDOM.findDOMNode(this)
+    this.shouldScrollToBottom = node.scrollTop + node.clientHeight + 100 >= node.scrollHeight
+  }
+
+  componentDidUpdate(){
+      if (this.shouldScrollToBottom) {
+          const node = ReactDOM.findDOMNode(this)
+          node.scrollTop = node.scrollHeight
+      }
+  }
 
     render(){
         return (

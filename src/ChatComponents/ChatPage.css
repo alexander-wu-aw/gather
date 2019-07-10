@@ -14,6 +14,9 @@
     overflow: hidden;
     width: 30%; 
     border-right:1px solid #c4c4c4;
+    display: flex; 
+    flex-direction: column;  
+    height: 100vh;
   }
   .inbox-heading{ 
     padding:40px 29px 10px 0px; 
@@ -63,7 +66,7 @@
   
   
   .inbox-convo { 
-    height: 88vh; 
+    flex-grow: 1;
     overflow-y: scroll;
   }
   
@@ -73,9 +76,12 @@
     float: left;
     padding: 30px 20px 0 25px;
     width: 70%;
+    height: 100vh;
+    display: flex; 
+    flex-direction: column;  
   }
   .msg-history {
-    height: 92vh;
+    height: 94%;
     overflow-y: auto;
   }
   .msg-in-img {
@@ -122,6 +128,7 @@
     float: right;
     width: 46%;
   }
+
   .msg-new {
     border-top: 1px solid #c4c4c4;
     position: relative;
@@ -131,8 +138,8 @@
     border: medium none;
     color: #4c4c4c;
     font-size: 15px;
-    min-height: 48px;
     width: 100%;
+    min-height: 48px;
   }
   .msg-new-input:focus{
     outline: none;

@@ -10,7 +10,7 @@ class SentMsg extends Component{
                 <div className="msg-out">
                     <div className="msg-out-content">
                       <p>{this.props.text}</p>
-                      <span className="time_date"> {date.toLocaleTimeString().substr(0,4) + " " +  date.toLocaleTimeString().substr(8,9)}    |    {date.toDateString().substr(4,6)}</span> 
+                      <span className="time_date"> {date.toLocaleTimeString()}    |    {date.toDateString().substr(4,6)}</span> 
                     </div>
                 </div>
         );
