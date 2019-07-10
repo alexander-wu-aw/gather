@@ -6,6 +6,7 @@ class ConvoList extends Component{
 
     render(){
         const orderedRooms = [...this.props.rooms].sort((a, b) => new Date(b.lastMessageAt).getTime() -  new Date(a.lastMessageAt).getTime())
+        console.log("Convo List is being rendered")
         return (
             <div className="inbox-convo">
                 {orderedRooms.map(room => {

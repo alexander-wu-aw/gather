@@ -33,6 +33,13 @@ class ChatPage extends Component{
           .then(currentUser => {
             this.currentUser = currentUser
             this.getRooms()
+            /** */
+            this.currentUser.subscribeToRoom({
+                roomId: "19446702",
+            })
+            .then(() => {
+                this.subscribeToRoom([...this.state.joinableRooms, ...this.state.joinedRooms].sort((a, b) => new Date(b.lastMessageAt).getTime() -  new Date(a.lastMessageAt).getTime())[0].id)
+            })
         })
           .catch(err => console.log('error on connecting: ', err))
     }
@@ -44,7 +51,6 @@ class ChatPage extends Component{
                 joinableRooms,
                 joinedRooms: this.currentUser.rooms
             })
-            /*this.subscribeToRoom([...this.state.joinableRooms, ...this.state.joinedRooms].sort((a, b) => new Date(b.lastMessageAt).getTime() -  new Date(a.lastMessageAt).getTime())[0].id)*/
         })
         .catch(err => console.log('error on joinableRooms: ', err))
     }
