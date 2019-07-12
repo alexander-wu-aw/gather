@@ -6,7 +6,6 @@ class ConvoList extends Component{
 
     render(){
         const orderedRooms = [...this.props.rooms].sort((a, b) => new Date(b.lastMessageAt).getTime() -  new Date(a.lastMessageAt).getTime())
-        console.log("Convo List is being rendered")
         return (
             <div className="inbox-convo">
                 {orderedRooms.map(room => {
@@ -20,7 +19,8 @@ class ConvoList extends Component{
                         </div>
                         <div className="convo-desc">
                             <h5>{room.name} <span className="convo-date">Dec 25</span></h5>
-                            <p>Test, which is a new approach to ...</p>
+                            <p>Test, which is a new approach to have the life that you want to have before 
+                                you have the life to have...</p>
                         </div>
                     </div>
                     )

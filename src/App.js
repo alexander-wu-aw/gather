@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import ProjectPage from './ProjectPageComponents/ProjectPage';
 import ChatPage from "./ChatComponents/ChatPage";
-
-import { IconContext } from "react-icons";
 import { FaBars, FaRegComment, FaRegCircle, FaRegObjectGroup } from 'react-icons/fa';
 
 
@@ -37,32 +35,16 @@ class App extends Component{
     <div className="sidebar">
         <div className="sidebar-options">
             <div className="sidebar-link" onClick={this.projectHandleClick}>
-                <IconContext.Provider value={{ size: "1.5em" }}>
-                    <div>
-                      <FaRegObjectGroup/>
-                    </div>
-                </IconContext.Provider>                
+                  <FaRegObjectGroup/>              
             </div>
             <div className="sidebar-link" onClick={this.chatHandleClick}>
-                <IconContext.Provider value={{ size: "1.5em" }}>
-                    <div>
-                      <FaRegComment/>
-                    </div>
-                </IconContext.Provider>      
+                  <FaRegComment/>
             </div>
             <div className="sidebar-link">
-                <IconContext.Provider value={{ size: "1.5em" }}>
-                    <div>
-                      <FaRegCircle/>
-                    </div>
-                </IconContext.Provider>  
+                  <FaRegCircle/> 
             </div>
             <div className="sidebar-link">
-                <IconContext.Provider value={{ size: "1.5em" }}>
-                    <div>
-                        <FaBars/>
-                    </div>
-                </IconContext.Provider>  
+                  <FaBars/>
             </div>
         </div>
       </div>

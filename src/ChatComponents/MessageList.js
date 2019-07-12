@@ -25,12 +25,12 @@ class MessageList extends Component{
                 {this.props.messages.map((message, index) =>{
                   if(message.senderId === "Alexander"){
                     return(
-                      <SentMsg key={index} date={message.createdAt} text={message.text}/>
+                          <SentMsg key={index} date={message.createdAt} text={message.text}/>
                     )
                   }
                   else{
                     return(
-                      <ReceivedMsg key={index} date={message.createdAt} text={message.text} username={message.senderId}/>
+                          <ReceivedMsg key={index} date={message.createdAt} text={message.text} username={message.senderId}/>
                     )
                   }
     

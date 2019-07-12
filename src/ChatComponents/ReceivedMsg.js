@@ -12,8 +12,8 @@ class RecievedMsg extends Component{
                     </div>
                     <div className="msg-in-content">
                         <div className="msg-in-content-box">
-                          <p>{this.props.text}</p>
-                          <span className="time_date"> {date.toLocaleTimeString().substr(0,5) + " " +  date.toLocaleTimeString().substr(8,9)}    |    {date.toDateString().substr(4,6)}</span> 
+                          <p>{this.props.text} <span className="time_date"> {date.toLocaleTimeString().substr(0,5) + " " +  date.toLocaleTimeString().substr(8,9)}</span></p>
+                          <span className="time_date">{date.toDateString().substr(4,6)}</span> 
                         </div>
                     </div>
                 </div>

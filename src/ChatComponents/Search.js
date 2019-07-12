@@ -5,11 +5,11 @@ class Search extends Component{
 
     render(){
         return ( 
-                    <div class="search">
-                        <button type="submit" class="search-button">
+                    <div className="search">
+                        <button type="submit" className="search-button">
                             <FaSearch/>
                         </button>
-                        <input type="text" class="search-input" placeholder="search messages"/>
+                        <input type="text" className="search-input" placeholder="search messages"/>
                         
                     </div>
         );

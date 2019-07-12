@@ -11,15 +11,15 @@ body{
   left: 0;
   background-color: #FFFFFF; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+  text-align: center;
 }
 
 /* The navigation menu links */
 .sidebar-link{
-  padding: 16px 45px 16px 25px;
+  padding: 16px 0;
   margin-top: 10px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 40px;
   color: #B5B5B5;
   display: block;
   border: none;
@@ -28,7 +28,7 @@ body{
 
 .sidebar-options{
   position: relative;
-  top: 150px;
+  top: 180px;
 }
 
 .sidebar-link:hover{

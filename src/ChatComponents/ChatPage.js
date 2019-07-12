@@ -4,6 +4,7 @@ import ConvoList from './ConvoList';
 import MessageList from './MessageList';
 import InputMsg from './InputMsg';
 import Search from './Search';
+import MessageHeading from './MessageHeading';
 import Chatkit from "../../node_modules/@pusher/chatkit-client";
 import { tokenUrl, instanceLocator } from './APIconfig'
 
@@ -16,7 +17,8 @@ class ChatPage extends Component{
             roomId: null,
             messages: [],
             joinableRooms: [],
-            joinedRooms: []
+            joinedRooms: [],
+            roomName: null
         }
         this.sendMessage = this.sendMessage.bind(this)
         this.subscribeToRoom = this.subscribeToRoom.bind(this)
@@ -26,7 +28,7 @@ class ChatPage extends Component{
     componentDidMount() {
           const chatManager = new Chatkit.ChatManager({
               instanceLocator,
-              userId: 'Alexander',
+              userId: 'Stranger',
               tokenProvider: new Chatkit.TokenProvider({
                   url: tokenUrl
               })
@@ -71,7 +73,8 @@ class ChatPage extends Component{
         })
         .then(room => {
             this.setState({
-                roomId:room.id
+                roomId:room.id,
+                roomName:room.name
             })
             this.getRooms()
         })
@@ -102,6 +105,7 @@ class ChatPage extends Component{
                 </div>
 
                 <div className="msg">
+                    <MessageHeading roomName={this.state.roomName}/>
                     <MessageList messages={this.state.messages}/>
                     <InputMsg sendMessage={this.sendMessage}/>
                 </div>

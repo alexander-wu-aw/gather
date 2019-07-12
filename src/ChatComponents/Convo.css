@@ -1,6 +1,6 @@
 .convo {
     /*border-bottom: 1px solid #c4c4c4;*/
-    padding: 18px 60px 30px 85px;
+    padding: 4% 9% 6% 11%;
     overflow:hidden; 
     clear:both;
     cursor: pointer;
@@ -10,8 +10,8 @@
   }
   .convo-img {
     float: left;
-    width: 40px;
-    margin-right: 10px;
+    width: 50px;
+    margin-right: 20px;
   }
   .convo-desc {
     float: left;
@@ -21,7 +21,7 @@
   .convo-desc h5{ 
     font-size:18px; 
     color:#000; 
-    margin:0 0 6px 0;
+    margin:0 0 7px 0;
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
@@ -32,6 +32,7 @@
     font-size:10px; 
     float:right;
     color:#a0a0a0;
+    font-family: Poppins;
 
   }
   .convo-desc p{ 

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { FaPaperclip } from 'react-icons/fa';
+
 
 class InputMsg extends Component{
 
@@ -27,16 +29,15 @@ class InputMsg extends Component{
     
     render(){
         return (
-            
-                <div className="msg-new">
+            <div className="msg-new">
                     <form onSubmit={this.handleSubmit}>
                         <input onChange={this.handleChange}
-                    value={this.state.message} type="text" className="msg-new-input" placeholder="Type a message" />
+                    value={this.state.message} type="text" className="msg-new-input" placeholder="type a message..." />
+                     <button className="msg-new-btn" type="button">
+                        <FaPaperclip/>
+                    </button>
                     </form>
-                        <button className="msg-new-send" type="button">
-                          <i className="fa fa-paper-plane-o" aria-hidden="true"></i>
-                        </button>
-                </div>
+            </div>
 
         );
         }
