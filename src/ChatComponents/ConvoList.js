@@ -20,8 +20,7 @@ class ConvoList extends Component{
                         </div>
                         <div className="convo-desc">
                             <h5>{room.name} <span className="convo-date">Dec 25</span></h5>
-                            <p>Test, which is a new approach to have all solutions 
-                            astrology under one roof.</p>
+                            <p>Test, which is a new approach to ...</p>
                         </div>
                     </div>
                     )

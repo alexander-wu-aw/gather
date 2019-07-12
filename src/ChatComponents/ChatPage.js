@@ -3,8 +3,10 @@ import './ChatPage.css';
 import ConvoList from './ConvoList';
 import MessageList from './MessageList';
 import InputMsg from './InputMsg';
+import Search from './Search';
 import Chatkit from "../../node_modules/@pusher/chatkit-client";
 import { tokenUrl, instanceLocator } from './APIconfig'
+
 
 class ChatPage extends Component{
 
@@ -24,7 +26,7 @@ class ChatPage extends Component{
     componentDidMount() {
           const chatManager = new Chatkit.ChatManager({
               instanceLocator,
-              userId: 'Stranger',
+              userId: 'Alexander',
               tokenProvider: new Chatkit.TokenProvider({
                   url: tokenUrl
               })
@@ -91,14 +93,7 @@ class ChatPage extends Component{
                         <div className="messages-heading">
                             Messages
                         </div>
-                        <div className="search">
-                            <input type="text" className="search-input"  placeholder="Search" />
-                            <span className="search-button">
-                                <button type="button"> 
-                                    <i className="fa fa-search" aria-hidden="true"></i> 
-                                </button>
-                            </span> 
-                        </div>
+                        <Search />
                     </div>
                     <ConvoList 
                     roomId={this.state.roomId}
