@@ -1,59 +1,50 @@
 import React, {Component} from 'react';
 import './App.css';
-import ProjectPage from './ProjectPageComponents/ProjectPage';
-import ChatPage from "./ChatComponents/ChatPage";
-import { FaBars, FaRegComment, FaRegCircle, FaRegObjectGroup } from 'react-icons/fa';
+
+import ProjectPage from './Components/ProjectPageComponents/ProjectPage';
+import ChatPage from "./Components/ChatComponents/ChatPage";
+import SidebarProject from "./Components/SidebarProject"
+
+import {Route, NavLink, BrowserRouter} from "react-router-dom";
+
+import { FaSearch } from 'react-icons/fa';
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 
 class App extends Component{
-  state ={
-    page: "project"
-  }
-
-  projectHandleClick = () => {
-    this.setState((prevState) => {
-      return {page: "project"};
-    });
-  };
-
-  chatHandleClick = () => {
-    this.setState((prevState) => {
-      return {page: "chat"};
-    });
-  };
 
   render(){
-    let page;
-    if(this.state.page === "project"){
-      page = <ProjectPage/>
-    }
-    else if (this.state.page === "chat"){
-      page = <ChatPage />
-    }
-  return (
-  <div>
-    <div className="sidebar">
-        <div className="sidebar-options">
-            <div className="sidebar-link" onClick={this.projectHandleClick}>
-                  <FaRegObjectGroup/>              
+    return (
+      <div>
+        <div className="sidebar">
+            <div className="sidebar-title">
+                gather
             </div>
-            <div className="sidebar-link" onClick={this.chatHandleClick}>
-                  <FaRegComment/>
+            <div className="sidebar-search">
+                <button type="submit" className="sidebar-search-btn">
+                    <FaSearch/>
+                </button>
+                <input type="text" className="sidebar-search-input" placeholder="Search for a project or file"/>
             </div>
-            <div className="sidebar-link">
-                  <FaRegCircle/> 
-            </div>
-            <div className="sidebar-link">
-                  <FaBars/>
+            <div className="sidebar-nav">
+                <div className="sidebar-nav-heading heading-active">
+                    <div className="sidebar-nav-heading-title">
+                        Projects
+                    </div>
+                    <button className="sidebar-nav-heading-btn">
+                        <IoIosAddCircleOutline/>
+                    </button>
+                </div>
+
+                <SidebarProject/>
+                
             </div>
         </div>
+        <div className="main">
+          <ProjectPage />
+        </div>
       </div>
-    <div className="main">
-      {page}
-    </div>
-</div>
-  );
-  }
-} 
-
+    );
+    }
+  } 
 export default App;

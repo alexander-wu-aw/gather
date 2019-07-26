@@ -5,7 +5,7 @@ import MessageList from './MessageList';
 import InputMsg from './InputMsg';
 import Search from './Search';
 import MessageHeading from './MessageHeading';
-import Chatkit from "../../node_modules/@pusher/chatkit-client";
+import Chatkit from "../../../node_modules/@pusher/chatkit-client";
 import { tokenUrl, instanceLocator } from './APIconfig'
 
 

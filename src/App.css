@@ -1,10 +1,11 @@
 body{
   background: #F8F9FB;
+  font-family: Poppins;
 }
 /* The sidebar menu */
 .sidebar {
   height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 100px; /* Set the width of the sidebar */
+  width: 270px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
@@ -14,30 +15,96 @@ body{
   text-align: center;
 }
 
-/* The navigation menu links */
-.sidebar-link{
-  padding: 16px 0;
-  margin-top: 10px;
-  text-decoration: none;
+.sidebar-title{
+  margin-top: 2.5vh;
+  font-weight: bolder;
   font-size: 40px;
-  color: #B5B5B5;
-  display: block;
-  border: none;
-  cursor: pointer;
-}
-
-.sidebar-options{
-  position: relative;
-  top: 180px;
-}
-
-.sidebar-link:hover{
   color: #000000;
 }
 
+.sidebar-search {
+  margin: 25px auto;
+}
+.sidebar-search-input {
+  width: 65%;
+  font-size: 12px;
+  padding: 10px 5px 8px 5px;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid rgb(0, 0, 0);
+  border-left: none;
+  outline: none;
+}
+.sidebar-search-input:focus{
+  color: #777777;
+}
+.sidebar-search-input::-webkit-input-placeholder {
+  color: #AAA;
+  transform:translate3d(0,-0.5px,0)
+}
+.sidebar-search-btn{
+  border: 1px solid rgb(0, 0, 0);
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  color: #777777;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 10px 5px 8px 15px;
+}
+.sidebar-search-btn:focus {
+  outline:0;
+}
+
+.sidebar-nav{
+  margin-top: 40px;
+}
+.sidebar-nav-heading{
+  display: flex;
+  width: 100%;
+  text-align: left;
+  justify-content: space-between;
+  vertical-align: middle;
+
+}
+.sidebar-nav-heading-title{
+  flex-grow: 9;
+  text-align: left;
+  font-size: 18px;
+  background-color: transparent;
+  display: inline-block;
+  cursor: pointer;
+  padding: 15px 0 15px 30px;
+}
+.sidebar-nav-heading-btn{
+  font-size: 20px;
+  float:right;
+  background-color: transparent;
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px 20px 5px 10px;
+}
+.sidebar-nav .heading-active{
+  background-color: #F8F9FB;
+}
+
+.sidebar-nav-project{
+  background-color:transparent;
+  padding: 10px 0 10px 20px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  border-left: 10px solid transparent;
+}
+
+.sidebar-nav .project-active{
+  border-left: 10px solid #FF9999;
+  background-color: #F8F9FB;
+}
+
+
 /* Style page content */
 .main {
-  margin-left: 100px; /* Same as the width of the sidebar */
+  margin-left: 270px; /* Same as the width of the sidebar */
   padding: 0px 10px;
   padding-left: 0px;
   padding-right: 0px;
