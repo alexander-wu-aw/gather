@@ -8,7 +8,6 @@ class ProjectPage extends Component{
         return (
         <div className="projects">
             <nav className="navbar navbar-expand-md" >
-                <p className="navbar-brand" >Projects</p>
                 <div className=" navbar-collapse" id="main-navigation">
                   <ul className="navbar-nav">
                     <li className="nav-item">
@@ -29,6 +28,10 @@ class ProjectPage extends Component{
               </nav>
 
               <div className="project-all">
+                  <ProjectModule/>
+                  <ProjectModule/>
+                  <ProjectModule/>
+                  <ProjectModule/>
                   <ProjectModule/>
                   <ProjectModule/>
                   <ProjectModule/>

@@ -15,35 +15,46 @@ class App extends Component{
 
   render(){
     return (
-      <div>
-        <div className="sidebar">
-            <div className="sidebar-title">
-                gather
-            </div>
-            <div className="sidebar-search">
-                <button type="submit" className="sidebar-search-btn">
-                    <FaSearch/>
-                </button>
-                <input type="text" className="sidebar-search-input" placeholder="Search for a project or file"/>
-            </div>
-            <div className="sidebar-nav">
-                <div className="sidebar-nav-heading heading-active">
-                    <div className="sidebar-nav-heading-title">
-                        Projects
-                    </div>
-                    <button className="sidebar-nav-heading-btn">
-                        <IoIosAddCircleOutline/>
-                    </button>
-                </div>
+      <BrowserRouter>
+          <div className="sidebar">
+            <NavLink className ="sidebar-title" to="/">
+              <span>
+                  gather
+              </span>
+            </NavLink>
+              <div className="sidebar-search">
+                  <button type="submit" className="sidebar-search-btn">
+                      <FaSearch/>
+                  </button>
+                  <input type="text" className="sidebar-search-input" placeholder="Search for a project or file"/>
+              </div>
+              <div className="sidebar-nav-heading heading-active">
+                <NavLink className ="sidebar-nav-heading-title" to="/project-dashboard">
+                  <span >
+                      Projects
+                  </span>
+                </NavLink>
+                  <button className="sidebar-nav-heading-btn">
+                      <IoIosAddCircleOutline/>
+                  </button>
+              </div>
+              <div className="sidebar-nav">
+                  <SidebarProject/>
+                  <SidebarProject/>
+                  <SidebarProject/>
+                  <SidebarProject/>
+                  <SidebarProject/>
+                  <SidebarProject/>
+                  <SidebarProject/>
 
-                <SidebarProject/>
-                
-            </div>
-        </div>
-        <div className="main">
-          <ProjectPage />
-        </div>
-      </div>
+              </div>
+          </div>
+          <div className="main">
+          <Route exact path="/" component={ProjectPage} />
+          <Route path="/project-dashboard" component={ProjectPage} />
+          <Route path="/airbnb" component={ChatPage} />
+          </div>
+      </BrowserRouter>
     );
     }
   } 

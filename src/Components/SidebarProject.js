@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Route, NavLink, BrowserRouter} from "react-router-dom";
 
 
 
@@ -6,9 +7,11 @@ class SidebarProject extends Component{
 
     render(){
         return (
-            <div className="sidebar-nav-project">
-                Airbnb
-            </div>
+            <NavLink className ="sidebar-nav-project" to="/airbnb">
+                <span >
+                    Airbnb
+                </span>
+            </NavLink>
         );
         }
 }
