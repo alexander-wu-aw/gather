@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './ProjectDash.css';
-import ProjectModule from './ProjectModule';
+import Module from '../Module/Module';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import {FaAngleDown} from "react-icons/fa";
 
@@ -42,16 +42,16 @@ class ProjectDash extends Component{
                   </div>
                 </div>
                 </NavLink>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
-                  <ProjectModule/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
+                  <Module/>
               </div>
         </div>
         );

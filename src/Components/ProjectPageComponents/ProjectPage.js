@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FileModule from "./FileModule";
+import FileModule from "../Module/Module";
 import './ProjectPage.css';
 
 import { NavLink } from "react-router-dom";
@@ -9,6 +9,12 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 
 class ProjectPage extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          
+        }
+      }
 
     render() {
         return (
@@ -28,9 +34,9 @@ class ProjectPage extends Component {
                         Airbnb Design Project
                 </div>
                 <div className="files-all">
-                    <div className="project-add">
+                    <div className="file-add">
                         Add a new <br/>file
-                        <div className="project-add-btn">
+                        <div className="file-add-btn">
                             <IoIosAddCircleOutline />
                         </div>
                     </div>
