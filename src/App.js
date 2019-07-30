@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import ProjectPage from './Components/ProjectPageComponents/ProjectPage';
+import ProjectDash from './Components/ProjectDashboardComponents/ProjectDash';
 import ChatPage from "./Components/ChatComponents/ChatPage";
 import SidebarProject from "./Components/SidebarProject"
+import CreateProject from "./Components/ProjectDashboardComponents/CreateProject";
+import ProjectPage from "./Components/ProjectPageComponents/ProjectPage"
+import FilePage from "./Components/FilePageComponents/FilePage"
 
 import {Route, NavLink, BrowserRouter} from "react-router-dom";
 
@@ -50,9 +53,11 @@ class App extends Component{
               </div>
           </div>
           <div className="main">
-          <Route exact path="/" component={ProjectPage} />
-          <Route path="/project-dashboard" component={ProjectPage} />
-          <Route path="/airbnb" component={ChatPage} />
+          <Route exact path="/" component={ProjectDash} />
+          <Route path="/project-dashboard" component={ProjectDash} />
+          <Route path="/add-project" component={CreateProject} />
+          <Route path="/airbnb" component={ProjectPage} />
+          <Route path="/roundone" component={FilePage} />
           </div>
       </BrowserRouter>
     );
