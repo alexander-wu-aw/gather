@@ -9,8 +9,12 @@
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     border: none;
     display: inline-block;
-    margin: 30px 25px 30px 25px;
     cursor: pointer;
+  }
+
+  .module-margin{
+    margin: 30px 25px 30px 25px;
+
   }
   
   .module:hover{

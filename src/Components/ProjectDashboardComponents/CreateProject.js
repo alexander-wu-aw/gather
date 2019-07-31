@@ -6,9 +6,9 @@ class CreateProject extends Component{
 
     render(){
         return (
+            <div className="popup-create-prjt">
             <div className="create-prjt">
-                <h2>Create a new project</h2>
-                <p>Add some basic details to set up your new project -you can always add more later!</p>
+                <h2>Give your project a name</h2>
 
                 <form>
                     <label>
@@ -19,6 +19,8 @@ class CreateProject extends Component{
                     <input className="create-prjt-submit" type="submit" value="Create New Project" />
 
                 </form>
+            </div>
+            <div onClick={this.props.closeAddProject} id="close-CreateProject"></div> 
             </div>
         );
         }

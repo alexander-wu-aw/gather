@@ -1,20 +1,32 @@
 import React, {Component} from 'react';
-import './ProjectDash.css';
-import Module from '../Module/Module';
-import { IoIosAddCircleOutline } from "react-icons/io";
-import {FaAngleDown} from "react-icons/fa";
+import axios from 'axios'
 
+import './ProjectDash.css';
+
+import Module from '../Module/Module';
 import {NavLink} from "react-router-dom";
 
-
+import { IoIosAddCircleOutline } from "react-icons/io";
+import {FaAngleDown} from "react-icons/fa";
+import CreateProject from './CreateProject';
 
 class ProjectDash extends Component{
   constructor(props){
     super(props);
     this.state = {
-      
+      addProject: false
     }
+    this.addProject = this.addProject.bind(this)
   }
+
+  addProject() {
+    this.setState({
+      addProject: !this.state.addProject
+    });
+  }
+
+
+
 
     render(){
         return (
@@ -34,14 +46,12 @@ class ProjectDash extends Component{
               </nav>
 
               <div className="project-all" href="/add-project">
-              <NavLink to="/add-project">
-                <div className="project-add">
+                <div onClick={this.addProject} className="project-add">
                     Add a new project
                   <div className="project-add-btn">
                     <IoIosAddCircleOutline/>
                   </div>
                 </div>
-                </NavLink>
                   <Module/>
                   <Module/>
                   <Module/>
@@ -53,7 +63,12 @@ class ProjectDash extends Component{
                   <Module/>
                   <Module/>
               </div>
+              {this.state.addProject ?
+                <> 
+                <CreateProject closeAddProject={this.addProject}/> 
+                </> : null}
         </div>
+
         );
         }
 }
