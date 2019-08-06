@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import {connect} from "react-redux";
 import './ProjectDash.css';
 
-import Module from '../Module/Module';
+import ProjectModule from '../Module/ProjectModule';
 import { NavLink } from "react-router-dom";
 
 import { IoIosAddCircleOutline } from "react-icons/io";
@@ -15,7 +15,6 @@ class ProjectDash extends Component {
     super(props);
     this.state = {
       addProject: false,
-      data: {}
     }
     this.addProject = this.addProject.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
@@ -27,21 +26,10 @@ class ProjectDash extends Component {
       addProject: !this.state.addProject
     });
   }
-
   componentDidMount(){
-    axios.get(
-      'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?userName=Nicole'
-      )
-    .then(data => {console.log(data)})
-
+    this.props.dispatch({type: "SELECT_PROJECT", selected_project: ""})
   }
-
-
-
-
   render() {
-
-
     return (
       <div className="projects">
         <nav className="navbar">
@@ -53,8 +41,8 @@ class ProjectDash extends Component {
           <div className="navbar-sort">
             Sort by <strong>due date</strong> <FaAngleDown />
           </div>
-          <a className="profile">Ben Nelly
-                       <img className="profile-pic" src="https://media.licdn.com/dms/image/C4E03AQGBYWT96u1X3A/profile-displayphoto-shrink_800_800/0?e=1568246400&v=beta&t=-RAPE_wtKkE4OYJoddHusCvxVwQ3SU4Vam5n0n7Qn7w" alt="" />
+          <a className="profile">{this.props.username}
+              <img className="profile-pic" src="https://media.licdn.com/dms/image/C4E03AQGBYWT96u1X3A/profile-displayphoto-shrink_800_800/0?e=1568246400&v=beta&t=-RAPE_wtKkE4OYJoddHusCvxVwQ3SU4Vam5n0n7Qn7w" alt="" />
           </a>
         </nav>
 
@@ -65,16 +53,7 @@ class ProjectDash extends Component {
               <IoIosAddCircleOutline />
             </div>
           </div>
-          <Module />
-          <Module />
-          <Module />
-          <Module />
-          <Module />
-          <Module />
-          <Module />
-          <Module />
-          <Module />
-          <Module />
+          {this.props.projects.map((project) => <ProjectModule key = {project._id} id = {project._id} project ={project}/>)}
         </div>
         {this.state.addProject ?
           <>
@@ -85,5 +64,8 @@ class ProjectDash extends Component {
     );
   }
 }
-
-export default ProjectDash;
+const mapStateToProps = (state) => ({
+  username: state.username,
+  projects: state.projects
+})
+export default connect(mapStateToProps)(ProjectDash);
