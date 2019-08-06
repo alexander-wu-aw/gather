@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import './App.css';
 import axios from 'axios'
 
@@ -19,13 +19,13 @@ import { stat } from 'fs';
 
 class App extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     axios.get(
       'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?userName=Nicole'
-      )
-    .then(data => {
-      this.props.dispatch({type: "LOAD_PROJECTS", data:data.data.data})
-    })
+    )
+      .then(data => {
+        this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
+      })
   }
 
   render() {
@@ -43,6 +43,7 @@ class App extends Component {
             </button>
             <input type="text" className="sidebar-search-input" placeholder="Search for a project or file" />
           </div>
+
           <div className="sidebar-nav-heading heading-active">
             <NavLink className="sidebar-nav-heading-title" to="/project-dashboard">
               <span >
@@ -53,14 +54,16 @@ class App extends Component {
               <IoIosAddCircleOutline />
             </button>
           </div>
+
           <div className="sidebar-nav">
-    {this.props.projects.map((project) => {
-      if(this.props.selected_project===project._id){
-          return <SidebarProject key = {project._id} id={project._id} name ={project.projectName} active="true"/>
-        }
-        else{
-          return <SidebarProject key = {project._id} id={project._id} name ={project.projectName} active="false"/>
-        }})}
+            {this.props.projects.map((project) => {
+              if (this.props.selected_project === project._id) {
+                return <SidebarProject key={project._id} id={project._id} name={project.projectName} active="true" />
+              }
+              else {
+                return <SidebarProject key={project._id} id={project._id} name={project.projectName} active="false" />
+              }
+            })}
           </div>
         </div>
         <div className="main">
