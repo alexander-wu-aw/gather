@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
-import { withRouter } from 'react-router-dom';
-
-
-
 
 
 class SidebarProject extends Component{
@@ -18,12 +14,12 @@ class SidebarProject extends Component{
 
     }
     handleClick(){
-        this.props.dispatch({type: "SELECT_PROJECT", selected_project: this.props.id})
+        this.props.dispatch({type: "SELECT_PROJECT", selected_project: this.props.id, selected_project_name: this.props.name})
       }
     render(){
         if(this.props.active === "true"){
         return (
-            <NavLink className ="sidebar-nav-project project-active" onClick={this.handleClick} to="/project" >
+            <NavLink className ="sidebar-nav-project project-active" onClick={this.handleClick} to={"/project/"+this.props.id} >
                 <span >
                     {this.state.name}
                 </span>
@@ -31,7 +27,7 @@ class SidebarProject extends Component{
         );}
         else{
             return(
-            <NavLink className ="sidebar-nav-project" onClick={this.handleClick} to="/project" >
+            <NavLink className ="sidebar-nav-project" onClick={this.handleClick} to={"/project/"+this.props.id} >
             <span >
                 {this.state.name}
             </span>

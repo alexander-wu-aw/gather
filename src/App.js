@@ -26,9 +26,16 @@ class App extends Component {
       .then(data => {
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
       })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
+    var projectHeadingActive = ""
+    if(this.props.selected_project==="" | typeof this.props.selected_project === 'undefined'){
+      projectHeadingActive = "heading-active"
+    }
     return (
       <BrowserRouter>
         <div className="sidebar">
@@ -44,7 +51,7 @@ class App extends Component {
             <input type="text" className="sidebar-search-input" placeholder="Search for a project or file" />
           </div>
 
-          <div className="sidebar-nav-heading heading-active">
+          <div className={"sidebar-nav-heading " + projectHeadingActive}>
             <NavLink className="sidebar-nav-heading-title" to="/project-dashboard">
               <span >
                 Projects
@@ -69,7 +76,7 @@ class App extends Component {
         <div className="main">
           <Route exact path="/" component={ProjectDash} />
           <Route path="/project-dashboard" component={ProjectDash} />
-          <Route path="/project" component={ProjectPage} />
+          {this.props.projects.map((project) => <Route exact path= {"/project/"+project._id} key={project._id} component={ProjectPage} /> )}
           <Route path="/roundone" component={FilePage} />
         </div>
       </BrowserRouter>

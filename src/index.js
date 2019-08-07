@@ -12,6 +12,7 @@ const initialState = {
     data: {},
     projects: [],
     selected_project: "",
+    selected_project_name: "",
     files: []
 }
 function reducer(state = initialState, action){
@@ -25,7 +26,8 @@ function reducer(state = initialState, action){
         case "SELECT_PROJECT":
             return{
                 ...state,
-                selected_project: action.selected_project
+                selected_project: action.selected_project,
+                selected_project_name: action.selected_project_name
             }
         case "LOAD_FILES":
             return{
