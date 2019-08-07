@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import FileModule from "../Module/Module";
+import axios from 'axios'
+import {connect} from "react-redux";
+
+import FileModule from "../Module/FileModule";
 import './ProjectPage.css';
 
 import { NavLink } from "react-router-dom";
@@ -12,8 +15,18 @@ class ProjectPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-          
         }
+        this.componentDidMount = this.componentDidMount.bind(this)
+    }
+
+      componentDidMount(){
+        axios.get(
+          'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-pictures?_id='+ this.props.selected_project
+          )
+        .then(data => {
+            console.log("project: ",data.data.data)
+          this.props.dispatch({type: "LOAD_FILES", files: data.data.data.projectDoc})
+        })
       }
 
     render() {
@@ -26,7 +39,7 @@ class ProjectPage extends Component {
                         Airbnb
                     </div>
 
-                    <a className="profile">Ben Nelly
+                    <a className="profile">{this.props.username}
                        <img className="profile-pic" src="https://media.licdn.com/dms/image/C4E03AQGBYWT96u1X3A/profile-displayphoto-shrink_800_800/0?e=1568246400&v=beta&t=-RAPE_wtKkE4OYJoddHusCvxVwQ3SU4Vam5n0n7Qn7w" alt="" />
                     </a>
                 </nav>
@@ -41,16 +54,16 @@ class ProjectPage extends Component {
                         </div>
                     </div>
 
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
-                    <FileModule />
+                    {/*<FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>
+                    <FileModule project=""/>*/}
                 </div>
             </div>
 
@@ -58,4 +71,8 @@ class ProjectPage extends Component {
     }
 }
 
-export default ProjectPage;
+const mapStateToProps = (state) => ({
+    selected_project: state.selected_project,
+    username: state.username,
+  })
+export default connect(mapStateToProps)(ProjectPage);
