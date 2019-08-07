@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios'
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -13,7 +15,7 @@ const initialState = {
     projects: [],
     selected_project: "",
     selected_project_name: "",
-    files: []
+    files: [],
 }
 function reducer(state = initialState, action){
     switch(action.type){

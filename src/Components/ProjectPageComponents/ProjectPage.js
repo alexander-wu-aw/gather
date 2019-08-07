@@ -22,21 +22,23 @@ class ProjectPage extends Component {
     }
 
     componentDidMount() {
+        this.props.dispatch({type: "SELECT_PROJECT", selected_project: this.props.id, selected_project_name: this.props.name})
+        
         axios.get(
             'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-pictures?_id=' + this.props.selected_project
         )
             .then(data => {
-                console.log("project: ", data.data.data)
-                console.log("selected", this.props.selected_project)
+                console.log("project: ", data.data.data.projectDoc)
                 this.props.dispatch({ type: "LOAD_FILES", files: data.data.data.projectDoc })
             })
             .catch(err => {
                 console.log(err)
             })
+
     }
 
     render() {
-        if (this.props.selected_project !== "" && typeof this.props.selected_project != 'undefined'){
+        console.log("file",this.props.files)
         return (
             <div className="files">
                 <nav className="navbar">
@@ -51,7 +53,7 @@ class ProjectPage extends Component {
                     </a>
                 </nav>
                 <div className="project-title">
-                    {this.props.selected_project_name} Design Project
+                    {this.props.selected_project_name}
                 </div>
                 <div className="files-all">
                     <div className="file-add">
@@ -60,30 +62,18 @@ class ProjectPage extends Component {
                             <IoIosAddCircleOutline />
                         </div>
                     </div>
-
-                    {/*<FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>
-                    <FileModule project=""/>*/}
+                    {this.props.files ? this.props.files.map((file) => <FileModule key = {file._id} id = {file._id} file ={file}/>) : ""}
                 </div>
             </div>
 
-        );}
-        else{
-            return  <Redirect to='/project-dashboard' />
-        }
+        );
     }
 }
 
 const mapStateToProps = (state) => ({
     selected_project: state.selected_project,
     username: state.username,
-    selected_project_name: state.selected_project_name
+    selected_project_name: state.selected_project_name,
+    files: state.files
 })
 export default connect(mapStateToProps)(ProjectPage);

@@ -38,6 +38,11 @@
     font-weight: bold;
     font-size: 22px;
     margin-bottom: 5px;
+    height: 27px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .module p{
     font-weight: 300;

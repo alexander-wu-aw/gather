@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Route, NavLink, BrowserRouter } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router'
+
 import axios from 'axios';
 
 
@@ -24,9 +27,11 @@ class CreateProject extends Component {
         const data = JSON.stringify({
             projectName: this.state.projectName,
         });
-        axios.post("", data)
-        .then(response => {
-            console.log(response)
+        axios.post("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-create?userName=Nicole", data)
+        .then(data => {
+            console.log(data.data.project._id)
+            this.props.history.push(('/project/' + data.data.project._id))
+            window.location.reload();
         })
         .catch(error => {
             console.log(error)
@@ -54,4 +59,4 @@ class CreateProject extends Component {
     }
 }
 
-export default CreateProject;
+export default withRouter(CreateProject);

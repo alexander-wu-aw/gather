@@ -15,6 +15,7 @@ import { Route, NavLink, BrowserRouter } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { stat } from 'fs';
+import { tsConstructSignatureDeclaration } from '@babel/types';
 
 
 class App extends Component {
@@ -29,6 +30,8 @@ class App extends Component {
       .catch(err => {
         console.log(err)
       })
+
+      
   }
 
   render() {
@@ -76,7 +79,7 @@ class App extends Component {
         <div className="main">
           <Route exact path="/" component={ProjectDash} />
           <Route path="/project-dashboard" component={ProjectDash} />
-          {this.props.projects.map((project) => <Route exact path= {"/project/"+project._id} key={project._id} component={ProjectPage} /> )}
+          {this.props.projects.map((project) => <Route exact path={"/project/"+project._id} key={project._id} component={ () => {return <ProjectPage id={project._id} name={project.projectName}/>}} /> )}
           <Route path="/roundone" component={FilePage} />
         </div>
       </BrowserRouter>

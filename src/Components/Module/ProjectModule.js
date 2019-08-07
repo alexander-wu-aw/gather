@@ -12,7 +12,6 @@ class ProjectModule extends Component{
         super(props)
         this.state = {
             title: this.props.project.projectName,
-            editDay: "five",
             img: this.props.project.projectpic,
             editDate: this.props.project.lastEdited
         }
@@ -26,9 +25,9 @@ class ProjectModule extends Component{
     render(){
 
         const crntDate = new Date()
-        const prjtDate = new Date(this.state.editDate)
+        const editDate = new Date(this.state.editDate)
 
-        const diffTime = Math.abs(crntDate.getTime() - prjtDate.getTime())
+        const diffTime = Math.abs(crntDate.getTime() - editDate.getTime())
         const diffMin = Math.floor( diffTime/ (1000 * 60)); 
         const diffHour = Math.floor( diffTime/ (1000 * 60 * 60)); 
         const diffDay = Math.floor( diffTime/ (1000 * 60 * 60 * 24)); 
@@ -39,8 +38,8 @@ class ProjectModule extends Component{
             months += d2.getMonth();
             return months <= 0 ? 0 : months;
         }
-        const diffMonth = monthDiff(prjtDate, crntDate) 
-        const diffYear = crntDate.getFullYear() - prjtDate.getFullYear()
+        const diffMonth = monthDiff(editDate, crntDate) 
+        const diffYear = crntDate.getFullYear() - editDate.getFullYear()
 
         var lastEdited=""
         if(diffMin  < 1){
