@@ -26,12 +26,12 @@ class App extends Component {
     )
       .then(data => {
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
+        console.log("data", this.props.data)
+
       })
       .catch(err => {
         console.log(err)
-      })
-
-      
+      })      
   }
 
   render() {
@@ -42,7 +42,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="sidebar">
-          <NavLink className="sidebar-title" to="/">
+          <NavLink className="sidebar-title" to="/project-dashboard">
             <span>
               gather
               </span>

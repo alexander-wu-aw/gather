@@ -7,7 +7,7 @@ class FilePage extends Component{
         return (
             <div className="feedback">
                 <div className="share">
-                    
+                    <h1> Placeholder</h1>
                 </div>
 
             </div>

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './Module.css';
 
+import { connect } from "react-redux";
+
 import { NavLink} from "react-router-dom";
 import {FaEllipsisV} from "react-icons/fa";
 
@@ -14,7 +16,8 @@ class FileModule extends Component{
         this.state = {
             title: this.props.file.projectDocName,
             img: this.props.file.projectDocLink,
-            editDate: this.props.file.lastEdited
+            editDate: this.props.file.lastEdited,
+            id: this.props.id
 
         }
     }
@@ -74,7 +77,7 @@ class FileModule extends Component{
         }
 
         return (
-            <NavLink className="module-margin" to="/roundone">
+            <NavLink className="module-margin" to={"/project/" + this.props.selected_project+"/file/"+this.state.id}>
                 <div className= "module">
                     <img className="module-img" src={this.state.img} alt=""/>
                     <div className='module-desc'>
@@ -92,4 +95,7 @@ class FileModule extends Component{
         }
 }
 
-export default FileModule;
+const mapStateToProps = (state) => ({
+    selected_project: state.selected_project,
+})
+export default connect(mapStateToProps)(FileModule);

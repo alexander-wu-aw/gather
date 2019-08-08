@@ -11,11 +11,13 @@ import {Provider} from "react-redux";
 
 const initialState = {
     username: "",
+    profile_pic: "",
     data: {},
     projects: [],
     selected_project: "",
     selected_project_name: "",
     files: [],
+    upload_info: {},
 }
 function reducer(state = initialState, action){
     switch(action.type){
@@ -23,7 +25,8 @@ function reducer(state = initialState, action){
             return{
                 data: action.data,
                 projects: action.data.projects,
-                username: action.data.userName
+                username: action.data.userName,
+                profile_pic: action.data.profilepic
                 }
         case "SELECT_PROJECT":
             return{
@@ -34,7 +37,8 @@ function reducer(state = initialState, action){
         case "LOAD_FILES":
             return{
                 ...state,
-                files: action.files
+                files: action.files,
+                upload_info: action.upload_info
             }
         
         default:
