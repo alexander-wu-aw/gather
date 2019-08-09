@@ -36,13 +36,11 @@ class ProjectPage extends Component {
         this.props.dispatch({ type: "SELECT_PROJECT", selected_project: this.props.id, selected_project_name: this.props.name })
         this.props.dispatch({ type: "LOAD_FILES", files: [] })
 
-        console.log('https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-pictures?_id=' + this.props.selected_project + "&userName=" + this.props.username)
 
         axios.get(
             'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-pictures?_id=' + this.props.selected_project + "&userName=" + this.props.username
         )
             .then(data => {
-                console.log("I GOT IT", data.data)
                 this.props.dispatch({ type: "LOAD_FILES", files: data.data.project.projectDoc, upload_info: data.data.policy })
             })
             .catch(err => {
@@ -75,9 +73,7 @@ class ProjectPage extends Component {
         xhr.send(data);
     }
     uploadComplete(){
-        console.log("DONE")
-        console.log("https://mongo-proj-set-dvoyza.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName="+this.props.username)
-        axios.get("https://mongo-proj-set-dvoyza.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName="+this.props.username).then(res => console.log(res.data))
+        axios.get("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName="+this.props.username).then(res => console.log(res.data))
     }
     uploadFailed(){
 
@@ -88,9 +84,6 @@ class ProjectPage extends Component {
 
 
     render() {
-        console.log("file", this.props.files)
-        console.log("policy", this.props.upload_info)
-
         var uploadForm = ""
         if (this.props.upload_info) {
             uploadForm =

@@ -18,8 +18,12 @@ class FileModule extends Component{
             img: this.props.file.projectDocLink,
             editDate: this.props.file.lastEdited,
             id: this.props.id
-
         }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(){
+        this.props.dispatch({ type: "SELECT_FILE", selected_file: this.state.id, selected_file_link: this.state.img })
     }
 
     render(){
@@ -77,7 +81,7 @@ class FileModule extends Component{
         }
 
         return (
-            <NavLink className="module-margin" to={"/project/" + this.props.selected_project+"/file/"+this.state.id}>
+            <NavLink onClick={this.handleClick} className="module-margin" to={"/file"}>
                 <div className= "module">
                     <img className="module-img" src={this.state.img} alt=""/>
                     <div className='module-desc'>

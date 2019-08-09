@@ -34,6 +34,12 @@ function reducer(state = initialState, action){
                 selected_project: action.selected_project,
                 selected_project_name: action.selected_project_name
             }
+        case "SELECT_FILE":
+            return{
+                ...state,
+                selected_file: action.selected_file,
+                selected_file_link: action.selected_file_link
+            }
         case "LOAD_FILES":
             return{
                 ...state,

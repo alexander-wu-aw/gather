@@ -26,7 +26,6 @@ class App extends Component {
     )
       .then(data => {
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
-        console.log("data", this.props.data)
 
       })
       .catch(err => {
@@ -84,7 +83,7 @@ class App extends Component {
           <Route exact path="/" component={ProjectDash} />
           <Route path="/project-dashboard" component={ProjectDash} />
           {this.props.projects.map((project) => <Route exact path={"/project/"+project._id} key={project._id} component={ () => {return <ProjectPage id={project._id} name={project.projectName}/>}} /> )}
-          <Route path="/roundone" component={FilePage} />
+          <Route path="/file" component={FilePage} />
         </div>
       </BrowserRouter>
     );
