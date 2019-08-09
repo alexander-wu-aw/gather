@@ -66,7 +66,11 @@ class App extends Component {
           </div>
 
           <div className="sidebar-nav">
-            {this.props.projects.map((project) => {
+            {this.props.projects.sort((a, b) => {
+                  a = new Date(a.lastEdited);
+                  b = new Date(b.lastEdited);
+                  return a>b ? -1 : a<b ? 1 : 0;
+              }).map((project) => {
               if (this.props.selected_project === project._id) {
                 return <SidebarProject key={project._id} id={project._id} name={project.projectName} active="true" />
               }

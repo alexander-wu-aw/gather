@@ -48,6 +48,13 @@ class ProjectDash extends Component {
     this.props.dispatch({type: "SELECT_PROJECT", selected_project: ""})
   }
   render() {
+
+    const projectModules = this.props.projects.sort((a, b) => {
+      a = new Date(a.lastEdited);
+      b = new Date(b.lastEdited);
+      return a>b ? -1 : a<b ? 1 : 0;
+  }).map((project) => <ProjectModule key = {project._id} id = {project._id} project ={project} />)
+
     return (
       <div className="projects">
         <nav className="navbar">
@@ -71,7 +78,7 @@ class ProjectDash extends Component {
               <IoIosAddCircleOutline />
             </div>
           </div>
-          {this.props.projects.map((project) => <ProjectModule key = {project._id} id = {project._id} project ={project} />)}
+          {projectModules}
         </div>
         {this.state.addProject ?
           <>

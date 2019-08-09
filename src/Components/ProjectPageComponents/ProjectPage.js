@@ -108,9 +108,17 @@ class ProjectPage extends Component {
                     <br />
                     <input type="submit" name="submit" value="Upload" />
                 </form>
-
         }
 
+        var fileModules = "" ;
+        if(this.props.files){
+           fileModules = this.props.files.sort((a, b) => {
+               a = new Date(a.lastEdited);
+               b = new Date(b.lastEdited);
+               return a>b ? -1 : a<b ? 1 : 0;
+           })
+           .map((file) => <FileModule key={file._id} id={file._id} file={file} />)
+       }
 
 
         return (
@@ -137,9 +145,8 @@ class ProjectPage extends Component {
         </div>*/}
 
                         {uploadForm}
-
                     </div>
-                    {this.props.files ? this.props.files.map((file) => <FileModule key={file._id} id={file._id} file={file} />) : ""}
+                    {fileModules}
                 </div>
             </div>
 
