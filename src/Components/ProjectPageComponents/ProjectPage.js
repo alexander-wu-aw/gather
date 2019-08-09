@@ -26,6 +26,8 @@ class ProjectPage extends Component {
         this.componentDidMount = this.componentDidMount.bind(this)
         this.handleChangeUpload = this.handleChangeUpload.bind(this)
         this.handleSubmitUpload = this.handleSubmitUpload.bind(this)
+        this.uploadComplete = this.uploadComplete.bind(this)
+
 
 
     }
@@ -74,8 +76,8 @@ class ProjectPage extends Component {
     }
     uploadComplete(){
         console.log("DONE")
-        console.log("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName"+this.props.username)
-        axios.get("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName"+this.props.username)
+        console.log("https://mongo-proj-set-dvoyza.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName="+this.props.username)
+        axios.get("https://mongo-proj-set-dvoyza.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName="+this.props.username).then(res => console.log(res.data))
     }
     uploadFailed(){
 
