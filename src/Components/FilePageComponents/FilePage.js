@@ -16,10 +16,10 @@ class FilePage extends Component {
         this.createAnnotation = this.createAnnotation.bind(this)
     }
 
-    annoHandler(handler, fn){
+    annoHandler = (handler, fn) => {
         window.anno.addHandler(handler, fn);
     };
-    createAnnotation(annotation) {
+    createAnnotation = annotation => {
         this.setState({
             annotations: [...this.state.annotations, annotation]
         });

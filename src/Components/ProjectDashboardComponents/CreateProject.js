@@ -24,9 +24,9 @@ class CreateProject extends Component {
     }
     handleSubmit(e){
         e.preventDefault();
-        const data = {
+        const data = JSON.stringify({
             projectName: this.state.projectName,
-        };
+        });
         axios.post("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-create?userName=Nicole", data)
         .then(data => {
             console.log(data.data.project._id)

@@ -81,9 +81,9 @@ class ProjectDash extends Component {
           {projectModules}
         </div>
         {this.state.addProject ?
-          <React.Fragment>
+          <>
             <CreateProject closeAddProject={this.addProject} />
-          </React.Fragment> : null}
+          </> : null}
       </div>
 
     );

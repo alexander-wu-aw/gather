@@ -22,9 +22,10 @@ class App extends Component {
 
   componentDidMount() {
     axios.get(
-      'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?userName=Nicole'
+      'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?userName=Nicole Nair'
     )
       .then(data => {
+        console.log(data)
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
 
       })

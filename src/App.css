@@ -13,7 +13,7 @@ a {
   color: initial
  }
 
- button{
+ button, input{
    background-color: inherit;
    outline: none;
    border: none;

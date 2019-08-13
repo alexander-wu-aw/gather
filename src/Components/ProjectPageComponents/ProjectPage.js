@@ -20,6 +20,7 @@ class ProjectPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            uploading: false
         }
         this.textInput = React.createRef();
 
@@ -49,19 +50,12 @@ class ProjectPage extends Component {
     }
 
     handleChangeUpload() {
+        this.form.dispatchEvent(new Event("submit"));
     }
     handleSubmitUpload(e) {
         e.preventDefault();
 
         const data = new FormData(e.target);
-
-        // fetch(this.props.upload_info.url, { method: "POST", body: data })
-        //     .then((response) => {
-        //     console.log(response);
-        //     response.json().then((data) => {
-        //         console.log(data);
-        //     });
-        // });
 
         var xhr = new XMLHttpRequest();
         // xhr.upload.addEventListener("progress", this.uploadProgress, false);
@@ -73,7 +67,11 @@ class ProjectPage extends Component {
         xhr.send(data);
     }
     uploadComplete(){
-        axios.get("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName="+this.props.username).then(res => console.log(res.data))
+        axios.get("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&userName="+this.props.username)
+        .then(res => window.location.reload())
+        this.setState({
+            uploading: true
+        })
     }
     uploadFailed(){
 
@@ -87,7 +85,7 @@ class ProjectPage extends Component {
         var uploadForm = ""
         if (this.props.upload_info) {
             uploadForm =
-                <form onSubmit={this.handleSubmitUpload}>
+                <form onSubmit={this.handleSubmitUpload} ref={r => (this.form = r)}>
                     <input type="hidden" name="key" value={this.props.upload_info.fields.key} />
                     <input type="hidden" name="acl" value={this.props.upload_info.fields.acl} />
                     {/* <input type="hidden" name="success_action_redirect" value={this.props.upload_info.fields.success_action_redirect} /> */}
@@ -96,10 +94,15 @@ class ProjectPage extends Component {
                     <input type="hidden" name="X-Amz-Date" value={this.props.upload_info.fields["X-Amz-Date"]} />
                     <input type="hidden" name="Policy" value={this.props.upload_info.fields.Policy} />
                     <input type="hidden" name="X-Amz-Signature" value={this.props.upload_info.fields["X-Amz-Signature"]} />
-
-                    <input type="file" name="file" onChange={this.handleChangeUpload} required />
+                    <label className="file-add">
+                    Add a new <br />file
+                        <div className="file-add-btn">
+                            <IoIosAddCircleOutline />
+        </div>
+                    <input className="file-add-input" type="file" name="file" onChange={this.handleChangeUpload} required />
+                    </label>
                     <br />
-                    <input type="submit" name="submit" value="Upload" />
+                    {/* <input type="submit" name="submit" value="Upload" /> */}
                 </form>
         }
 
@@ -113,9 +116,15 @@ class ProjectPage extends Component {
            .map((file) => <FileModule key={file._id} id={file._id} file={file} />)
        }
 
+       var uploadScreen = "";
+       if(this.state.uploading){
+           uploadScreen = <div className="uploadScreen"> Uploading...</div>
+       }
+
 
         return (
             <div className="files">
+                {uploadScreen}
                 <nav className="navbar">
                     <div className="history">
                         <NavLink to="/project-dashboard">Projects</NavLink>
@@ -131,11 +140,11 @@ class ProjectPage extends Component {
                     {this.props.selected_project_name}
                 </div>
                 <div className="files-all">
-                    <div className="file-add">
-                        {/*Add a new <br />file
+                    <div >
+                        {/* Add a new <br />file
                         <div className="file-add-btn">
                             <IoIosAddCircleOutline />
-        </div>*/}
+        </div> */}
 
                         {uploadForm}
                     </div>
