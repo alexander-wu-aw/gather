@@ -14,7 +14,6 @@ class FilePage extends Component {
         };
         this.annoHandler = this.annoHandler.bind(this)
         this.createAnnotation = this.createAnnotation.bind(this)
-
     }
 
     annoHandler(handler, fn){
