@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './FilePage.css';
+
+import "annotorious"
 import "../../anno-vanilla-rest-plugin"
 
 
@@ -23,8 +25,6 @@ class FilePage extends Component {
         this.setState({
             annotations: [...this.state.annotations, annotation]
         });
-        console.log("ANNOT")
-        console.log(this.state.annotations)
     };
     componentDidMount() {
         window.anno.makeAnnotatable(this.myImage);
