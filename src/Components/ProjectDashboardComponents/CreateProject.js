@@ -5,6 +5,8 @@ import { withRouter } from 'react-router'
 
 import axios from 'axios';
 
+import { connect } from "react-redux";
+
 
 
 class CreateProject extends Component {
@@ -27,7 +29,7 @@ class CreateProject extends Component {
         const data = JSON.stringify({
             projectName: this.state.projectName,
         });
-        axios.post("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-create?userName=Nicole", data)
+        axios.post("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-create?userName="+this.props.username, data)
         .then(data => {
             console.log(data.data.project._id)
             this.props.history.push(('/project/' + data.data.project._id))
@@ -58,5 +60,7 @@ class CreateProject extends Component {
         );
     }
 }
-
-export default withRouter(CreateProject);
+const mapStateToProps = (state) => ({
+    username: state.username
+})
+export default connect(mapStateToProps)(withRouter(CreateProject));
