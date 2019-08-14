@@ -6,7 +6,6 @@ import axios from 'axios'
 
 import ProjectDash from './Components/ProjectDashboardComponents/ProjectDash';
 import SidebarProject from "./Components/SidebarProject"
-import CreateProject from "./Components/ProjectDashboardComponents/CreateProject";
 import ProjectPage from "./Components/ProjectPageComponents/ProjectPage"
 import FilePage from "./Components/FilePageComponents/FilePage"
 
@@ -14,8 +13,6 @@ import { Route, NavLink, BrowserRouter } from "react-router-dom";
 
 import { FaSearch } from 'react-icons/fa';
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { stat } from 'fs';
-import { tsConstructSignatureDeclaration } from '@babel/types';
 
 
 class App extends Component {
@@ -25,7 +22,6 @@ class App extends Component {
       'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?userName=Nicole Nair'
     )
       .then(data => {
-        console.log(data)
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
 
       })
@@ -60,9 +56,9 @@ class App extends Component {
                 Projects
                   </span>
             </NavLink>
-            <button className="sidebar-nav-heading-btn">
+            {/* <button className="sidebar-nav-heading-btn">
               <IoIosAddCircleOutline />
-            </button>
+            </button> */}
           </div>
 
           <div className="sidebar-nav">

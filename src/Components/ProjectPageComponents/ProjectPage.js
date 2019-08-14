@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router'
-
-
 
 import FileModule from "../Module/FileModule";
 import './ProjectPage.css';
@@ -12,8 +9,6 @@ import './ProjectPage.css';
 import { NavLink } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { tsConstructSignatureDeclaration } from '@babel/types';
-
 
 
 class ProjectPage extends Component {

@@ -88,7 +88,6 @@ window.annotorious.plugin.VanillaREST = (function () {
         // console.log(this._getAnnotationData)
         // console.log(data)
         jQuery.getJSON(url, function (data) {
-            console.log(data)
             data = data["data"]
             console.log(data)
             
@@ -155,7 +154,6 @@ window.annotorious.plugin.VanillaREST = (function () {
 
             // Remove all load indicators
             jQuery.each(self._loadIndicators, function (idx, spinner) {
-                console.log(spinner)
                 jQuery(spinner).remove();
             });
         }).fail(function(jqXHR) {
