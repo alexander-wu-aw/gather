@@ -3,6 +3,7 @@ import axios from 'axios'
 import './FilePage.css';
 import "../../anno-vanilla-rest-plugin"
 
+
 import { connect } from "react-redux";
 
 
@@ -16,10 +17,10 @@ class FilePage extends Component {
         this.createAnnotation = this.createAnnotation.bind(this)
     }
 
-    annoHandler = (handler, fn) => {
+    annoHandler (handler, fn){
         window.anno.addHandler(handler, fn);
     };
-    createAnnotation = annotation => {
+    createAnnotation (annotation) {
         this.setState({
             annotations: [...this.state.annotations, annotation]
         });
@@ -49,8 +50,6 @@ class FilePage extends Component {
     render() {
         return (
             <div className="feedback">
-                <div className="share">
-                    <h1> Placeholder</h1>
                     {/* <img src={this.props.selected_file_link} /> */}
                     <img
                         ref={r => (this.myImage = r)}
@@ -58,7 +57,6 @@ class FilePage extends Component {
                         src={this.props.selected_file_link}
                         alt=""
                     />
-                </div>
 
             </div>
         );

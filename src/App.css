@@ -154,6 +154,7 @@ a {
   margin-left: 250px; /* Same as the width of the sidebar */
   padding-left: 0px;
   padding-right: 0px;
+  height: 100vh;
 }
 
 
