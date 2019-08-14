@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import App from './App';
+import LogIn from './LogIn/LogIn'
 
 import {createStore} from "redux";
 import {Provider} from "react-redux";
@@ -54,6 +55,6 @@ const store = createStore(reducer);
 
 ReactDOM.render(
     <Provider store={store}>
-    <App />
+    <LogIn />
     </Provider>, document.getElementById('root'));
 
