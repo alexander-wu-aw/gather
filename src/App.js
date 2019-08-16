@@ -5,14 +5,16 @@ import axios from 'axios'
 
 
 import ProjectDash from './Components/ProjectDashboardComponents/ProjectDash';
-import SidebarProject from "./Components/SidebarProject"
+import Sidebar from "./Components/Sidebar"
 import ProjectPage from "./Components/ProjectPageComponents/ProjectPage"
 import FilePage from "./Components/FilePageComponents/FilePage"
+import LogIn from './LogIn/LogIn';
 
-import { Route, NavLink, BrowserRouter } from "react-router-dom";
+import { Route, NavLink, BrowserRouter, Redirect, Switch } from "react-router-dom";
 
 import { FaSearch } from 'react-icons/fa';
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { tsConstructSignatureDeclaration } from '@babel/types';
 
 
 class App extends Component {
@@ -23,21 +25,38 @@ class App extends Component {
     )
       .then(data => {
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
-
       })
       .catch(err => {
         console.log(err)
-      })      
+      })
   }
-
   render() {
-    var projectHeadingActive = ""
-    if(this.props.selected_project==="" | typeof this.props.selected_project === 'undefined'){
-      projectHeadingActive = "heading-active"
-    }
     return (
       <BrowserRouter>
-        <div className="sidebar">
+        <Route path="/" component={() => {
+          if (sessionStorage.getItem('userToken') !== null) {
+            return (
+              <React.Fragment>
+                <Sidebar/>
+              <div className="main">
+                <Switch>
+                  <Route exact path="/project-dashboard" component={ProjectDash} />
+                  {/* <Route path="/project/:project_id" component={ProjectPage} /> */}
+                  {this.props.projects.map((project) => <Route path={"/project/" + project._id} key={project._id} component={() => { return <ProjectPage id={project._id} name={project.projectName} /> }} />)}
+                  <Route path="/file" component={FilePage} />
+                  {/* <Route path="/" component={()=> <Redirect to ="/project-dashboard"/>}/> */}
+                </Switch>
+              </div>
+              </React.Fragment>
+                )
+          }
+          else {
+            return (<React.Fragment><Redirect to='/login' /><LogIn /> </React.Fragment>)
+          }
+        }} />
+
+
+        {/* <div className="sidebar">
           <NavLink className="sidebar-title" to="/project-dashboard">
             <span>
               gather
@@ -56,9 +75,9 @@ class App extends Component {
                 Projects
                   </span>
             </NavLink>
-            {/* <button className="sidebar-nav-heading-btn">
+            <button className="sidebar-nav-heading-btn">
               <IoIosAddCircleOutline />
-            </button> */}
+            </button>
           </div>
 
           <div className="sidebar-nav">
@@ -81,7 +100,7 @@ class App extends Component {
           <Route path="/project-dashboard" component={ProjectDash} />
           {this.props.projects.map((project) => <Route exact path={"/project/"+project._id} key={project._id} component={ () => {return <ProjectPage id={project._id} name={project.projectName}/>}} /> )}
           <Route path="/file" component={FilePage} />
-        </div>
+        </div> */}
       </BrowserRouter>
     );
   }

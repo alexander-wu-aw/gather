@@ -45,7 +45,6 @@ function reducer(state = initialState, action){
                 files: action.files,
                 upload_info: action.upload_info
             }
-        
         default:
             return state
     }
@@ -55,6 +54,6 @@ const store = createStore(reducer);
 
 ReactDOM.render(
     <Provider store={store}>
-    <LogIn />
+    <App />
     </Provider>, document.getElementById('root'));
 

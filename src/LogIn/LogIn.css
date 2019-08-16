@@ -1,17 +1,43 @@
 .login{
+    display:flex;
 }
-
-.login-google{
-    font-size: 30px;
-    display: inline-block;
+.login-content{    
     height: 100vh;
     width: 30%;
+
+    display: table;
+
+    align-items: center;
+    text-align: center;
+}
+.login-content-fields{
+    display: table-cell;
+    vertical-align: middle;
+}
+.login-content-fields h3{
+    font-weight: bold;
+    font-size: 36px;
 }
 
 .login-display{
-    background-color: #E5E5E5;
     display: inline-block;
-    position: absolute;
+    position: relative;
+    vertical-align: middle;
+
+    width: 70%;
     height:100vh;
-    width:70%;
+
+    background-color: white;
+    text-align: center
+}
+.login-display-helper{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.login-display-img{
+    vertical-align: middle;
+
+    margin: auto;
+    height: 80%;
 }
