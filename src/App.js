@@ -18,12 +18,22 @@ import { tsConstructSignatureDeclaration } from '@babel/types';
 
 
 class App extends Component {
+  constructor(){
+    super()
+    this.login = this.login.bind(this)
+  }
+
+  login(){
+    this.componentDidMount()
+  }
 
   componentDidMount() {
     axios.get(
-      'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?userName=Nicole Nair'
+      'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?token=' + sessionStorage.getItem('userToken')
     )
       .then(data => {
+        console.log('https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?token=' + sessionStorage.getItem('userToken'))
+        console.log("dashboard",data)
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
       })
       .catch(err => {
@@ -31,6 +41,10 @@ class App extends Component {
       })
   }
   render() {
+    axios.get('https://mongo-proj-ic8xgr.turbo360-vertex.com/api/validate-token?token='+sessionStorage.getItem('userToken'))
+    .then(data=>{
+      console.log("validation",data)
+    })
     return (
       <BrowserRouter>
         <Route path="/" component={() => {
@@ -40,7 +54,7 @@ class App extends Component {
                 <Sidebar/>
               <div className="main">
                 <Switch>
-                  <Route exact path="/project-dashboard" component={ProjectDash} />
+                  <Route exact path="/project-dashboard" component={()=><ProjectDash getData={this.componentDidMount}/>} />
                   {/* <Route path="/project/:project_id" component={ProjectPage} /> */}
                   {this.props.projects.map((project) => <Route path={"/project/" + project._id} key={project._id} component={() => { return <ProjectPage id={project._id} name={project.projectName} /> }} />)}
                   <Route path="/file" component={FilePage} />
@@ -51,7 +65,7 @@ class App extends Component {
                 )
           }
           else {
-            return (<React.Fragment><Redirect to='/login' /><LogIn /> </React.Fragment>)
+            return (<React.Fragment><Redirect to='/login' /><LogIn login={this.login}/> </React.Fragment>)
           }
         }} />
 

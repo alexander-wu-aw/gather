@@ -13,6 +13,7 @@ class LogIn extends Component {
 
     responseGoogleSuccess(res){
         sessionStorage.setItem('userToken', res.tokenObj.id_token);
+        this.props.login()
         this.props.history.push('/project-dashboard')
     }
     responseGoogleFail(res){

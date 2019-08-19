@@ -44,6 +44,7 @@ class ProjectDash extends Component {
   }
   componentDidMount(){
     this.props.dispatch({type: "SELECT_PROJECT", selected_project: ""})
+    // this.props.getData();
   }
   render() {
 
