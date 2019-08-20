@@ -27,12 +27,10 @@ class CreateProject extends Component {
         const data = JSON.stringify({
             projectName: this.state.projectName,
         });
-        console.log("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-create?token="+sessionStorage.getItem('userToken'))
         axios.post("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-create?token="+sessionStorage.getItem('userToken'), data)
         .then(data => {
-             console.log(data.data.data._id)
-            // this.props.history.push(('/project/' + data.data.data._id))
-            // window.location.reload();
+            this.props.history.push(('/project/' + data.data.data._id))
+            window.location.reload();
         })
         .catch(error => {
             console.log(error)

@@ -75,7 +75,6 @@ window.annotorious.plugin.VanillaREST = (function () {
         // console.log("loading")
         // console.log(this._annotations)
         
-        
         var self = this;
         var url = '';
         if (this.options.loadFromSearch === false) {

@@ -10,11 +10,11 @@ import ProjectPage from "./Components/ProjectPageComponents/ProjectPage"
 import FilePage from "./Components/FilePageComponents/FilePage"
 import LogIn from './LogIn/LogIn';
 
+
 import { Route, NavLink, BrowserRouter, Redirect, Switch } from "react-router-dom";
 
 import { FaSearch } from 'react-icons/fa';
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { tsConstructSignatureDeclaration } from '@babel/types';
 
 
 class App extends Component {
@@ -32,21 +32,22 @@ class App extends Component {
       'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?token=' + sessionStorage.getItem('userToken')
     )
       .then(data => {
-        console.log('https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?token=' + sessionStorage.getItem('userToken'))
-        console.log("dashboard",data)
+        if(data.data.confirmation){
+
+        }
+        else{
         this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
+        }
       })
       .catch(err => {
         console.log(err)
       })
   }
   render() {
-    axios.get('https://mongo-proj-ic8xgr.turbo360-vertex.com/api/validate-token?token='+sessionStorage.getItem('userToken'))
-    .then(data=>{
-      console.log("validation",data)
-    })
     return (
       <BrowserRouter>
+      <Switch>
+        <Route exact path="/file" component={FilePage} />
         <Route path="/" component={() => {
           if (sessionStorage.getItem('userToken') !== null) {
             return (
@@ -68,6 +69,7 @@ class App extends Component {
             return (<React.Fragment><Redirect to='/login' /><LogIn login={this.login}/> </React.Fragment>)
           }
         }} />
+        </Switch>
 
 
         {/* <div className="sidebar">

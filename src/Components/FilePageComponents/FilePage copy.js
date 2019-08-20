@@ -14,7 +14,7 @@ class FilePage extends Component {
         super()
         this.state = {
             annotations: [],
-            fileURL: "",
+            fileURL:""
         };
         this.annoHandler = this.annoHandler.bind(this)
         this.createAnnotation = this.createAnnotation.bind(this)
@@ -29,30 +29,40 @@ class FilePage extends Component {
     };
     componentDidMount() {
         axios.get(
-            'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/file' + this.props.location.search +"&token="+sessionStorage.getItem("userToken")
+            'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/file' + this.props.location.search
         )
             .then(data => {
                 this.props.dispatch({ type: "SELECT_FILE", selected_file_link: data.data.data.fileURL })
+                console.log("mount")
                 this.setState({
                     fileURL: data.data.data.fileURL
                 })
+                console.log("mount2")
 
-                setTimeout(function () {
+                window.anno.makeAnnotatable(this.myImage);
+                console.log("mount3")
 
-                    window.anno.makeAnnotatable(this.myImage);
+                // this.annoHandler("onAnnotationCreated", this.createAnnotation);
+                console.log("mount4")
 
-                    this.annoHandler("onAnnotationCreated", this.createAnnotation);
-                    window.anno.addPlugin('VanillaREST', {
-                        'prefix': 'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/',
-                        'urls': {
-                            read: '/get-notes',
-                            create: '/create-notes',
-                            update: '/update-notes/:id',
-                            destroy: '/delete-notes/:id',
-                        },
-                        extraAnnotationData: { commenter: "Client" }
-                    })
-                }.bind(this), 50);
+                window.anno.addPlugin('VanillaREST', {
+                    'prefix': 'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/',
+                    'urls': {
+                        read: '/get-notes',
+                        create: '/create-notes',
+                        update: '/update-notes/:id',
+                        destroy: '/delete-notes/:id',
+                    },
+                    extraAnnotationData: { commenter: this.props.username ? this.props.username :"Client" }
+                })
+                console.log("NICOLE")
+                console.log("mount5")
+
+
+                this.setState({
+                    fileURL: data.data.data.fileURL
+
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -78,6 +88,7 @@ class FilePage extends Component {
     }
 
     render() {
+        console.log("render")
         return (
             <div className="feedback">
                 <img

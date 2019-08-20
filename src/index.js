@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import App from './App';
-import LogIn from './LogIn/LogIn'
+import FilePage from "./Components/FilePageComponents/FilePage"
 
 import {createStore} from "redux";
 import {Provider} from "react-redux";
@@ -36,7 +36,7 @@ function reducer(state = initialState, action){
         case "SELECT_FILE":
             return{
                 ...state,
-                selected_file: action.selected_file,
+                // selected_file: action.selected_file,
                 selected_file_link: action.selected_file_link
             }
         case "LOAD_FILES":

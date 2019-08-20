@@ -37,7 +37,6 @@ class ProjectPage extends Component {
             'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/project-pictures?projectId=' + this.props.selected_project + "&token=" + sessionStorage.getItem("userToken")
         )
             .then(data => {
-                console.log("peojwxrpGE",data.data.data)
                 this.props.dispatch({ type: "LOAD_FILES", files: data.data.data._doc.projectDoc, upload_info: data.data.data })
             })
             .catch(err => {
@@ -85,11 +84,11 @@ class ProjectPage extends Component {
                     <input type="hidden" name="key" value={this.props.upload_info.fields.key} />
                     <input type="hidden" name="acl" value={this.props.upload_info.fields.acl} />
                     {/* <input type="hidden" name="success_action_redirect" value={this.props.upload_info.fields.success_action_redirect} /> */}
-                    <input type="hidden" name="X-Amz-Credential" value={this.props.fields.upload_info["X-Amz-Credential"]} />
-                    <input type="hidden" name="X-Amz-Algorithm" value={this.props.fields.upload_info["X-Amz-Algorithm"]} />
-                    <input type="hidden" name="X-Amz-Date" value={this.props.fields.upload_info["X-Amz-Date"]} />
+                    <input type="hidden" name="X-Amz-Credential" value={this.props.upload_info.fields["X-Amz-Credential"]} />
+                    <input type="hidden" name="X-Amz-Algorithm" value={this.props.upload_info.fields["X-Amz-Algorithm"]} />
+                    <input type="hidden" name="X-Amz-Date" value={this.props.upload_info.fields["X-Amz-Date"]} />
                     <input type="hidden" name="Policy" value={this.props.upload_info.fields.Policy} />
-                    <input type="hidden" name="X-Amz-Signature" value={this.props.fields.upload_info["X-Amz-Signature"]} />
+                    <input type="hidden" name="X-Amz-Signature" value={this.props.upload_info.fields["X-Amz-Signature"]} />
                     <label className="file-add">
                     Add a new <br />file
                         <div className="file-add-btn">
