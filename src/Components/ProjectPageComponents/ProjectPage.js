@@ -45,6 +45,9 @@ class ProjectPage extends Component {
     }
 
     handleChangeUpload() {
+        this.setState({
+            uploading: true
+        })
         this.form.dispatchEvent(new Event("submit"));
     }
     handleSubmitUpload(e) {
@@ -64,9 +67,6 @@ class ProjectPage extends Component {
     uploadComplete(){
         axios.get("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&token="+sessionStorage.getItem("userToken"))
         .then(res => window.location.reload())
-        this.setState({
-            uploading: true
-        })
     }
     uploadFailed(){
 

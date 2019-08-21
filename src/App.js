@@ -70,7 +70,7 @@ class App extends Component {
                   {/* <Route path="/project/:project_id" component={ProjectPage} /> */}
                   {this.props.projects.map((project) => <Route path={"/project/" + project._id} key={project._id} component={() => { return <ProjectPage id={project._id} name={project.projectName} /> }} />)}
                   <Route path="/file" component={FilePage} />
-                  <Route path="/" component={()=> <Redirect to ="/project-dashboard"/>}/>
+                  {/* <Route path="/" component={()=> <Redirect to ="/project-dashboard"/>}/> */}
                 </Switch>
               </div>
               </React.Fragment>
