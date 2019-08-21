@@ -20,6 +20,9 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 class App extends Component {
   constructor(){
     super()
+    this.state = {
+      authorized: false
+    }
     this.login = this.login.bind(this)
   }
 
@@ -32,16 +35,23 @@ class App extends Component {
       'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/dashboard?token=' + sessionStorage.getItem('userToken')
     )
       .then(data => {
-        if(data.data.confirmation){
-
-        }
-        else{
-        this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
-        }
+        if(!data.data.confirmation){
+          this.props.dispatch({ type: "LOAD_PROJECTS", data: data.data.data })
+          }
       })
       .catch(err => {
         console.log(err)
       })
+  }
+
+  checkToken(){
+    axios.get('https://mongo-proj-ic8xgr.turbo360-vertex.com/api/validate-token?token='+sessionStorage.getItem("userToken"))
+    .then(data=> {
+      if(!(data.data.confirmation =="success")){
+        sessionStorage.clear();
+        window.location.reload();
+      }
+    })
   }
   render() {
     return (
@@ -50,6 +60,7 @@ class App extends Component {
         <Route exact path="/file" component={FilePage} />
         <Route path="/" component={() => {
           if (sessionStorage.getItem('userToken') !== null) {
+            {this.checkToken()}
             return (
               <React.Fragment>
                 <Sidebar/>
@@ -59,7 +70,7 @@ class App extends Component {
                   {/* <Route path="/project/:project_id" component={ProjectPage} /> */}
                   {this.props.projects.map((project) => <Route path={"/project/" + project._id} key={project._id} component={() => { return <ProjectPage id={project._id} name={project.projectName} /> }} />)}
                   <Route path="/file" component={FilePage} />
-                  {/* <Route path="/" component={()=> <Redirect to ="/project-dashboard"/>}/> */}
+                  <Route path="/" component={()=> <Redirect to ="/project-dashboard"/>}/>
                 </Switch>
               </div>
               </React.Fragment>

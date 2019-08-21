@@ -45,6 +45,11 @@ function reducer(state = initialState, action){
                 files: action.files,
                 upload_info: action.upload_info
             }
+        case "CLIENT_NAME":
+            return{
+                ...state,
+                username: action.clientName
+            }
         default:
             return state
     }
