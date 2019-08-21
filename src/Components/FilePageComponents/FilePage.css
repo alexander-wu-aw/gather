@@ -19,7 +19,7 @@
   object-fit: cover; /*magic*/
 }
 
-.popup-create-prjt{
+.popup-enterName{
   position: fixed;
   top: 0;
   left: 0;
@@ -30,7 +30,7 @@
 
 }
 
-.create-prjt {
+.enterName {
   position:absolute;
   top: 0;
   left: 0;
@@ -48,21 +48,21 @@
   padding: 46px 75px 0 70px;
 }
 
-.create-prjt h2 {
+.enterName h2 {
   font-weight: bold;
   font-size: 30px;
   line-height: 36px;
 }
 
-.create-prjt form{
+.enterName form{
   text-align: left;
   font-size: 15px;
   margin-top: 20px;
 }
-.create-prjt label {
+.enterName label {
   width: 100%;
 }
-.create-prjt input {
+.enterName input {
   width: 100%;
   margin: 8px 0 20px 0;
   font-size: 13px;
@@ -72,7 +72,7 @@
   border-radius: 10px;
   outline: none;
 }
-input[type="submit"].create-prjt-submit {
+input[type="submit"].enterName-submit {
   font-size: 13px !important;
   color: white;
   width: 250px;

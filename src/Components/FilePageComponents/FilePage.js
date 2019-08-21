@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './FilePage.css';
 
 import "annotorious"
-import "../../anno-vanilla-rest-plugin"
+//  import "./annotorious"
+import "./anno-vanilla-rest-plugin"
 
 import EnterName from "./EnterName"
 

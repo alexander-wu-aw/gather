@@ -39,8 +39,8 @@ class EnterName extends Component {
     }
     render() {
         return (
-            <div className="popup-create-prjt">
-                <div className="create-prjt">
+            <div className="popup-enterName">
+                <div className="enterName">
                     <h2>Welcome to Gather</h2>
                     <form onSubmit={this.handleSubmit}>
                         <label>
@@ -48,7 +48,7 @@ class EnterName extends Component {
                         <br />
                             <input type="text" name="clientName" value={this.state.clientName} onChange={this.handleChange} />
                         </label>
-                        <input className="create-prjt-submit" type="submit" value="Submit" />
+                        <input className="enterName-submit" type="submit" value="Submit" />
 
                     </form>
                 </div>
