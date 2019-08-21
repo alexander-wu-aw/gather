@@ -79,10 +79,7 @@ class ProjectDash extends Component {
           </div>
           {projectModules}
         </div>
-        {this.state.addProject ?
-          <>
-            <CreateProject closeAddProject={this.addProject} />
-          </> : null}
+        {this.state.addProject ? <CreateProject closeAddProject={this.addProject} /> : null}
       </div>
 
     );

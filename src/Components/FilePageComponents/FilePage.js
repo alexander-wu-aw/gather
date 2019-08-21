@@ -100,10 +100,7 @@ class FilePage extends Component {
     render() {
         return (
             <div className="feedback">
-                {this.state.enterName ?
-                    <>
-                        <EnterName closeEnterName={this.closeEnterName} />
-                    </> : null}
+                {this.state.enterName ? <EnterName closeEnterName={this.closeEnterName} /> : null}
                 <img
                     ref={r => (this.myImage = r)}
                     className="file-img"

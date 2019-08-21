@@ -81,7 +81,7 @@ class FileModule extends Component{
         }
 
         return (
-            <NavLink onClick={this.handleClick} className="module-margin" to={"/file?accessType=freelancer&projectId="+this.props.selected_project+"&fileURL="+this.state.img}>
+            <NavLink onClick={this.handleClick} className="module-margin" to={"/file?projectId="+this.props.selected_project+"&fileURL="+this.state.img}>
                 <div className= "module">
                     <img className="module-img" src={this.state.img} alt=""/>
                     <div className='module-desc'>
