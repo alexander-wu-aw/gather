@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./LogIn.css"
 
-import { withRouter } from 'react-router'
 import GoogleLogin from 'react-google-login';
 
 class LogIn extends Component {
@@ -14,7 +13,6 @@ class LogIn extends Component {
     responseGoogleSuccess(res){
         sessionStorage.setItem('userToken', res.tokenObj.id_token);
         this.props.login()
-        this.props.history.push('/project-dashboard')
     }
     responseGoogleFail(res){
         console.log(res)
@@ -46,5 +44,5 @@ class LogIn extends Component {
     }
 }
   
-  export default withRouter(LogIn);
+  export default LogIn;
 

@@ -17,7 +17,7 @@ class FilePage extends Component {
         this.state = {
             annotations: [],
             fileURL: "",
-            enterName: true
+            enterName: false
         };
         this.annoHandler = this.annoHandler.bind(this)
         this.createAnnotation = this.createAnnotation.bind(this)
@@ -38,12 +38,13 @@ class FilePage extends Component {
             .then(data => {
                 console.log(data.data.data)
                 if(data.data.data.client === "false" || sessionStorage.getItem('clientName') !== null){
-                    this.setState({
-                        enterName:false
-                    })
                     if(sessionStorage.getItem('clientName') !== null){
                     this.props.dispatch({ type: "CLIENT_NAME", clientName: sessionStorage.getItem('clientName') })
                     }
+                } else{
+                    this.setState({
+                        enterName:true
+                    })
                 }
                 this.props.dispatch({ type: "SELECT_FILE", selected_file_link: data.data.data.fileURL })
                 this.setState({
