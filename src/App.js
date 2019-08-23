@@ -56,6 +56,14 @@ class App extends Component {
   }
   render() {
     var link = <Switch><Route exact path="/login" component={() => { return <LogIn login={this.login}/>}}/><Route exact path="/home" render={() => {window.location.href="Home.html"}}/><Route path="/" component={() => { return <Redirect to="/home"/>}}/></Switch>
+
+    
+    // <Switch>
+    // {/* <Route exact path="/login" component={() => { return <LogIn login={this.login}/>}}/> */}
+    // {/* <Route exact path="/home" render={() => {window.location.href="Home.html"}}/> */}
+    // <Route exact path="/home" component={()=>{ return (<Home login={this.login}/>)}}/>
+    // <Route path="/" component={() => { return <Redirect to="/home"/>}}/>
+    // </Switch>
         
     // <React.Fragment><Redirect to='/login' /><LogIn login={this.login}/> </React.Fragment>
 

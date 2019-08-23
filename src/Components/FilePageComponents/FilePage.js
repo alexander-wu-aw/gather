@@ -9,6 +9,7 @@ import EnterName from "./EnterName"
 
 import { connect } from "react-redux";
 import axios from 'axios';
+// import "./OpenLayers"
 
 
 class FilePage extends Component {
