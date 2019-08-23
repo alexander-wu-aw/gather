@@ -142,7 +142,9 @@ margin-top: 10px;
   width: 100px;
   text-align: left;
   font-size: 14px;
-
+}
+.profile-menu button:hover{
+background-color: rgb(220, 220, 220);
 }
 
 .project-all {
