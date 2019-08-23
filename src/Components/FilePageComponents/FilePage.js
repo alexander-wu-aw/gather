@@ -47,11 +47,10 @@ class FilePage extends Component {
             'https://mongo-proj-ic8xgr.turbo360-vertex.com/api/file' + this.props.location.search + "&token=" + sessionStorage.getItem("userToken")
         )
             .then(data => {
-                console.log(data.data.data)
                 if (data.data.data.client === "false" || sessionStorage.getItem('clientName') !== null) {
-                    if (sessionStorage.getItem('clientName') !== null) {
-                        this.props.dispatch({ type: "CLIENT_NAME", clientName: sessionStorage.getItem('clientName') })
-                    }
+                    // if (sessionStorage.getItem('clientName') !== null) {
+                    //     this.props.dispatch({ type: "CLIENT_NAME", clientName: sessionStorage.getItem('clientName') })
+                    // }
                 } else {
                     this.setState({
                         enterName: true
@@ -74,7 +73,7 @@ class FilePage extends Component {
                             update: '/update-notes/:id',
                             destroy: '/delete-notes/:id',
                         },
-                        extraAnnotationData: { commenter: this.props.username }
+                        extraAnnotationData: { commenter: this.props.username ? this.props.username : sessionStorage.getItem('clientName')}
                     })
                 }.bind(this), 100);
             })
@@ -104,7 +103,6 @@ class FilePage extends Component {
         this.setState({
             enterName: false
         });
-        console.log("s", this.props.username)
         this.componentDidMount()
         this.render()
     }
@@ -133,7 +131,6 @@ class FilePage extends Component {
     }
 
     render() {
-        console.log("Asd",this.props.location)
         return (
             <>
             <NavLink className="title" to="/home">
