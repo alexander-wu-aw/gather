@@ -66,6 +66,7 @@
                                             function onSignIn(googleUser) {
                                                 // The ID token you need to pass to your backend:
                                                 var id_token = googleUser.getAuthResponse().id_token;
+                                                gapi.disco
                                                 sessionStorage.setItem('userToken', id_token);
                                                 window.location.href = "/project-dashboard";
                                             }
@@ -415,7 +416,6 @@
         </footer>
     </div>
 
-    <script src="dist/js/main.min.js"></script>
 </body>
 
 </html>

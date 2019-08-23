@@ -10,12 +10,16 @@ import { NavLink } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 
+import { GoogleLogout } from 'react-google-login';
+
+
 
 class ProjectPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            uploading: false
+            uploading: false,
+            showProfileMenu: false
         }
         this.textInput = React.createRef();
 
@@ -24,7 +28,8 @@ class ProjectPage extends Component {
         this.handleSubmitUpload = this.handleSubmitUpload.bind(this)
         this.uploadComplete = this.uploadComplete.bind(this)
 
-
+        this.showProfileMenu = this.showProfileMenu.bind(this);
+        this.closeProfileMenu = this.closeProfileMenu.bind(this);
 
     }
 
@@ -64,17 +69,37 @@ class ProjectPage extends Component {
         xhr.open("POST", this.props.upload_info.url, true);
         xhr.send(data);
     }
-    uploadComplete(){
-        axios.get("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key+"&projectId="+this.props.selected_project+"&token="+sessionStorage.getItem("userToken"))
-        .then(res => window.location.reload())
+    uploadComplete() {
+        axios.get("https://mongo-proj-ic8xgr.turbo360-vertex.com/api/update-project-documents?key=" + this.props.upload_info.fields.key + "&projectId=" + this.props.selected_project + "&token=" + sessionStorage.getItem("userToken"))
+            .then(res => window.location.reload())
     }
-    uploadFailed(){
+    uploadFailed() {
 
     }
-    uploadCanceled(){
+    uploadCanceled() {
 
     }
 
+    showProfileMenu(event) {
+        event.preventDefault();
+        
+        this.setState({ showProfileMenu: true }, () => {
+          document.addEventListener('click', this.closeProfileMenu);
+        });
+      }
+      
+      closeProfileMenu(event) {
+        // if (!this.dropdownProfileMenu.contains(event.target)) {
+        this.setState({ showProfileMenu: false }, () => {
+          document.removeEventListener('click', this.closeProfileMenu);
+        });
+    // }
+      }
+
+      logout(){
+          sessionStorage.clear()
+          window.location.reload();
+        }
 
     render() {
         var uploadForm = ""
@@ -90,31 +115,31 @@ class ProjectPage extends Component {
                     <input type="hidden" name="Policy" value={this.props.upload_info.fields.Policy} />
                     <input type="hidden" name="X-Amz-Signature" value={this.props.upload_info.fields["X-Amz-Signature"]} />
                     <label className="file-add">
-                    Add a new <br />file
+                        Add a new <br />file
                         <div className="file-add-btn">
                             <IoIosAddCircleOutline />
-        </div>
-                    <input className="file-add-input" type="file" name="file" onChange={this.handleChangeUpload} required />
+                        </div>
+                        <input className="file-add-input" type="file" name="file" onChange={this.handleChangeUpload} required />
                     </label>
                     <br />
                     {/* <input type="submit" name="submit" value="Upload" /> */}
                 </form>
         }
 
-        var fileModules = "" ;
-        if(this.props.files){
-           fileModules = this.props.files.sort((a, b) => {
-               a = new Date(a.lastEdited);
-               b = new Date(b.lastEdited);
-               return a>b ? -1 : a<b ? 1 : 0;
-           })
-           .map((file) => <FileModule key={file._id} id={file._id} file={file} />)
-       }
+        var fileModules = "";
+        if (this.props.files) {
+            fileModules = this.props.files.sort((a, b) => {
+                a = new Date(a.lastEdited);
+                b = new Date(b.lastEdited);
+                return a > b ? -1 : a < b ? 1 : 0;
+            })
+                .map((file) => <FileModule key={file._id} id={file._id} file={file} />)
+        }
 
-       var uploadScreen = "";
-       if(this.state.uploading){
-           uploadScreen = <div className="uploadScreen"> Uploading...</div>
-       }
+        var uploadScreen = "";
+        if (this.state.uploading) {
+            uploadScreen = <div className="uploadScreen"> Uploading...</div>
+        }
 
 
         return (
@@ -127,9 +152,27 @@ class ProjectPage extends Component {
                         {this.props.selected_project_name}
                     </div>
 
-                    <a className="profile">{this.props.username}
+                    <div className="profile" onClick={this.showProfileMenu}>{this.props.username}
                         <img className="profile-pic" src={this.props.profile_pic} alt="" />
-                    </a>
+                        {this.state.showProfileMenu ? (
+                        <div className="profile-menu" ref={(element) => {this.dropdownProfileMenu = element}}>
+                            <button> Profile </button>
+                            <GoogleLogout
+                  clientId="250039694980-rj02nk2mdr9iru0ohgfin3dsm78plt1o.apps.googleusercontent.com"
+                  render={renderProps => (
+                    <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Log Out</button>
+                  )}
+                  buttonText="Logout"
+                  onLogoutSuccess={this.logout}
+                >
+                </GoogleLogout>
+                        </div>
+                        )
+                        : (
+                            null
+                        )
+                    }
+                    </div>
                 </nav>
                 <div className="project-title">
                     {this.props.selected_project_name}

@@ -18,9 +18,16 @@ a {
    outline: none;
    border: none;
  }
+ button{
+  cursor: pointer;
+
+ }
  button:active{
   outline:none;
  }
+ button:focus, input[type="button"]:focus {
+  outline: none;
+}
 
 /* The sidebar menu */
 .sidebar {
