@@ -32,7 +32,9 @@
 
   user-select: none; 
 
-  text-align: center
+  text-align: center;
+
+  z-index: 1000;
 }
 
 .share-popup{
@@ -113,28 +115,25 @@
 }
 
 .file-container{
-  height: 100%;
   object-fit: contain;
-  display:flex;
 align-items:center;
 justify-content:center;
 
 }
 .file-img-container{
   object-fit: contain;
-flex: 1
 }
 
 .file-img{
     max-width: 100%;
     max-height:100%;
-    object-fit: cover; /*magic*/
+    object-fit: contain; 
 }
 
 .annotorious-annotationlayer{
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover; /*magic*/
+  object-fit: contain; 
 }
 
 .popup-enterName{
